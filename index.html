@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>/ [software reliability]</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <style>
+  pre code {
+      background-color: lightgoldenrodyellow;
+      border-radius: 1.0rem;
+      display: block;
+      font-size: 0.8rem;
+      padding: 1.0rem;
+  }
+
+  pre code.sourceCode {
+      background-color: lightgoldenrodyellow;
+  }
+
+  code {
+      background-color: lightgoldenrodyellow;
+      border-radius: 0.3rem;
+      padding: 0.1rem 0.2rem;
+  }
+
+  figcaption {
+      font-size: 0.9rem;
+      font-style: italic;
+      text-align: center;
+  }
+
+  #before {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid black;
+  }
+
+  #after {
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid black;
+  }
+  </style>
+</head>
+<body>
+<div id="banner">
+    <img src="media/header.jpg" alt="Course Header">
+</div>
+<div id="before">
+    Software Reliability and Testing
+    <div id="before-links">
+        <a href="." title="Course Home">Home</a> |
+        <a href="https://github.com/glesica/software-reliability" title="Course GitHub Page">GitHub</a>
+    </div>
+</div>
+<h1 id="software-reliability-and-testing">Software Reliability and Testing</h1>
+<p><strong>IMPORTANT: THIS IS A WORK IN PROGRESS</strong></p>
+<p>A <a href="https://www.umt.edu">University of Montana</a> course covering tools, techniques, and practices commonly used to produce more reliable software.</p>
+<h2 id="shortcuts">Shortcuts</h2>
+<ul>
+<li><a href="assignments/">Assignments</a></li>
+<li><a href="videos/">Lecture videos</a></li>
+<li><a href="office-hours.html">Office hours</a></li>
+<li><a href="topics/">Topics</a></li>
+</ul>
+<h2 id="schedule">Schedule</h2>
+<p>The <a href="topics/">topics/</a> directory contains the materials we will cover. Keep in mind that many topics will build on one another. This means that you really don’t want to fall behind. If you miss a week, be sure to catch up.</p>
+<h2 id="instruction">Instruction</h2>
+<p>Lectures will be delivered in-person, but they will also be livestreamed and recorded as an accomodation due to the Covid-19 pandemic. See Moodle for the Zoom link. Recordings will be posted here.</p>
+<p><a href="office-hours.html">Office hours</a> will be held virtually in an on-demand fashion. Please use <a href="https://calendly.com/glesica">Calendly</a> to schedule an office hours appointment.</p>
+<p>If you need help with an assignment, it is generally a good idea to include whatever code or data you are working with when you email me. You can do this using the <code>tar</code> command.</p>
+<p>To create a compressed file that includes all the files in a particular directory, use the following (in this case, the directory you want to zip is called <code>the_dir</code>):</p>
+<pre><code>tar czf the_dir.tgz the_dir</code></pre>
+<p>After you’ve done this, you can attach <code>the_dir.tgz</code> to an email.</p>
+<h3 id="lecture-videos">Lecture Videos</h3>
+<p>Lecture videos are available on YouTube, the list is on the <a href="videos/">videos/</a> page.</p>
+<h2 id="assignments">Assignments</h2>
+<p>Due dates are going to be a pretty relaxed affair. You’ll lose a point for every day something is late. The idea here is just to keep the whole class from turning in every assignment on the last day of the semester.</p>
+<p>Assignments can be found in the <a href="assignments/">assignments/</a> directory.</p>
+<h2 id="reading">Reading</h2>
+<p>There isn’t a textbook, but there are a couple books that students might find informative. These are listed below. This list will likely be updated as the semester progresses.</p>
+<ul>
+<li><a href="https://www.oreilly.com/library/view/classic-shell-scripting/0596005954/">Classic Shell Scripting</a></li>
+<li><a href="https://www.goodreads.com/book/show/39996759-a-philosophy-of-software-design">A Philosophy of Software Design</a></li>
+</ul>
+<h2 id="guest-speakers">Guest Speakers</h2>
+<p>We will have a number of <a href="guests.html">guest speakers</a> throughout the semester. Each will discuss a topic related to the course on which they have significant personal experience.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<h3 id="linux-on-windows">Linux on Windows</h3>
+<p>It is possible to install a Linux distribution under Windows 10 using WSL (Windows Subsystem for Linux). This will be required for some of the topics we study during this course. See the link below for instructions.</p>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10" class="uri">https://docs.microsoft.com/en-us/windows/wsl/install-win10</a></li>
+</ul>
+<h2 id="grading">Grading</h2>
+<p>Assignments will be evaluated automatically or by the instructor and grades will be posted on the course’s Moodle page for confidentiality.</p>
+<h2 id="disabilities">Disabilities</h2>
+<p>If you have a documented disability and would like to discuss an affordance, please let me know as soon as possible.</p>
+<h2 id="instructor">Instructor</h2>
+<p><a href="https://lesica.com">George Lesica</a> is a Senior Software Scientist in the <a href="https://wheelerlab.org">Wheeler Lab</a> at the University of Montana and a freelance software development and technology consultant.</p>
+<ul>
+<li>Email: <a href="mailto:george.lesica@umontana.edu" class="email">george.lesica@umontana.edu</a></li>
+<li>Microsoft Teams: George Lesica</li>
+</ul>
+
+<div id="after">
+    <a href="#">Back to top</a>
+    <div id="after-links">
+        <a href="." title="Course Home">Home</a> |
+        <a href="https://github.com/glesica/software-reliability" title="Course GitHub Page">GitHub</a>
+    </div>
+</div>
+</body>
+</html>

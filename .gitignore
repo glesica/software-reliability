@@ -1,0 +1,8 @@
+.DS_Store
+*~
+*.swp
+
+grading/
+media/captions/
+media/videos/
+scratch/
