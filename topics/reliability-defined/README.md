@@ -1,13 +1,19 @@
 # Reliability Defined
 
+What does it mean for software to be reliable? It's a tricky question, but a
+reasonable attempt at an answer might be to say that reliable software does what
+it is intended to do.
+
 At the end of the day, it is our job as software developers to help people solve
 problems. Sometimes these problems are glamorous, like launching satellites, and
 sometimes they are mundane, like filing taxes. In the same way, the consequences
 of faulty software are sometimes grave, and sometimes they are just mildly
-irritating. But either way, we owe it to ourselves, our profession, and people
-whose problems we help to solve, to produce reliable software. In fact, in some
-sense, if the software we produce is unreliable, then we haven't really solved a
-problem at all.
+irritating.
+
+But either way, we owe it to ourselves, our profession, and people whose
+problems we help to solve, to produce reliable software, that is, software that
+does what it is intended to do. In fact, in some sense, if the software we
+produce is unreliable, then we haven't really solved a problem at all.
 
 Unfortunately, building reliable software is challenging. Even seemingly simple
 problems often harbor hidden layers of complexity, and therefore require
