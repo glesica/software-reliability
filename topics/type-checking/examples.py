@@ -24,8 +24,8 @@ def repeat(msg: str, count: int) -> None:
         output += msg
     print(output)
 
-repeat("hello", 3);
-repeat("hello", "3");
-repeat("hello", True + True + True);
-repeat("hello", "duck");
-repeat(None, 3);
+repeat("hello", 3)
+repeat("hello", "3")
+repeat("hello", True + True + True)
+repeat("hello", "duck")
+repeat(None, 3)

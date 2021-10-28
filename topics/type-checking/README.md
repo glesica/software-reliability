@@ -11,6 +11,27 @@ data that supports a particular set of operations. For example, an integer type
 might consist of 32 bits of storage and support addition, subtraction, and other
 arithmetic operations.
 
+Another way of looking at types is that they give meaning to raw data. For
+example, say we have the value `65` stored at some location in memory, what does
+it represent? It could be a number, or it could be a capital "A" (ASCII
+character), or it could be interpreted as `true` (boolean) since it is non-zero.
+Going a step further, it could be a temperature in celcius, or a distance in
+miles, or a frequency in hertz.
+
+Of course, the computer itself, the CPU, doesn't care about types like integers
+and booleans, and most certainly doesn't care about celcius or miles. To the
+computer, there are only strings of binary digits (bits) and the operations that
+can be performed on them. But that's why virtually all software, aside from
+device drivers and the like which need to interface with the hardware directly,
+is written in high-level programming languages that supply additional
+abstractions and allow us to add our own.
+
+The meaning behind the value, the type, tells us what we can logically do with
+it and how we ought to present it to the user. If we interpret `65` as a
+boolean, for instance, then negating the value isn't a very useful thing to do,
+and would probably represent a programming error. On the other hand, negating a
+distance in miles might make perfect sense (depending on what we're doing).
+
 Different programming languages handle types differently. Some require
 variables, and even literal expressions, to be annotated with their types,
 others do not. Some will automatically convert data between types when needed,
@@ -78,6 +99,20 @@ runtime without telling anyone about it. As programmers, when we make mistakes
 in a weakly typed language, we often get incorrect results rather than errors.
 
 ## Untyped Languages
+
+Some languages have little to no concept of types at all. In general, these
+languages are either very low-level or are mostly considered "toys".
+
+Assembly languages, for example, generally have only a vague notion of types,
+usually limited to the behavior of the CPU itself.
+
+At the other end of the spectrum,
+[Brainfuck](https://en.wikipedia.org/wiki/Brainfuck), a "toy" language, has no
+concept of types beyond the fact that memory consists of integer bytes. In this
+case, it is entirely up to the programmer to give meaning to a given value
+stored in memory. For example, if a particular byte is used to store an ASCII
+character, then the programmer must remember not to assign it a value that is
+unused for ASCII encoding.
 
 ## Strong and Weak Typing
 
