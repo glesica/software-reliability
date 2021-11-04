@@ -21,7 +21,7 @@
       padding-top: 50px;
       padding-bottom: 50px;
       hyphens: auto;
-      overflow-wrap: break-word;
+      word-wrap: break-word;
       text-rendering: optimizeLegibility;
       font-kerning: normal;
     }
@@ -92,7 +92,6 @@
     pre code {
       padding: 0;
       overflow: visible;
-      overflow-wrap: normal;
     }
     .sourceCode {
      background-color: transparent;
@@ -149,26 +148,20 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
   <style>
-  pre code {
-      background-color: lightgoldenrodyellow;
-      border-radius: 1.0rem;
+  div.sourceCode, pre.output {
+      border: 1px solid gainsboro;
+      box-shadow: 3px 3px 10px gainsboro;
       display: block;
-      font-size: 0.8rem;
+      font-size: 0.9rem;
       padding: 1.0rem;
   }
 
-  pre code.sourceCode {
-      background-color: lightgoldenrodyellow;
-  }
-
-  code {
-      background-color: lightgoldenrodyellow;
-      border-radius: 0.3rem;
-      padding: 0.1rem 0.2rem;
+  figure {
+      text-align: center;
   }
 
   figcaption {
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       font-style: italic;
       text-align: center;
   }

@@ -1,0 +1,15 @@
+strict graph {
+    C, D, E, F [shape="box", fontname="Georgia"]
+
+    C [label="7"]
+    D [label="4"]
+    E [label="5"]
+    F [label="2"]
+
+    A -- B
+    A -- C
+    B -- D
+    B -- E
+    B -- F
+}
+

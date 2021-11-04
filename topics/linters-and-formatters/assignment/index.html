@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>/topics/fuzz-testing [software reliability]</title>
+  <title>/topics/linters/assignment [software reliability]</title>
   <style>
     html {
       line-height: 1.5;
@@ -186,22 +186,29 @@
 <div id="before">
     Software Reliability and Testing
     <div id="before-links">
-        <a href="../.." title="Course Home">Home</a> |
+        <a href="../../.." title="Course Home">Home</a> |
         <a href="https://github.com/glesica/software-reliability" title="Course GitHub Page">GitHub</a>
     </div>
 </div>
-<h1 id="fuzz-testing">Fuzz Testing</h1>
-<p>Fuzz testing involves randomly generating program inputs in an attempt to provoke an unsafe or unhandled crash, which often indicates a bug. Fuzz testing is often, but not exclusively, used to find security vulnerabilities.</p>
-<h2 id="assignments">Assignments</h2>
-<h2 id="further-reading">Further Reading</h2>
+<h1 id="linters-homework">Linters Homework</h1>
+<p>We’re going to add a “lint” to an existing linter. The lint can do anything you like, but some suggestions are provided below. Don’t worry if your lint isn’t actually useful. The goal is to gain some experience working with a real-world linter and adding code to an existing software project. That being said, your lint does need to <em>work</em> (in other words, your code needs to run and do what it is intended to do).</p>
+<h2 id="linters">Linters</h2>
+<p>You can choose which linter to modify, but keep in mind that I need to be able to evaluate your code easily. Pylint is probably a good choice because it is well-documented and adding a lint (“checker”) is straightforward. I will also (probably) be more familiar with Pylint than any arbitrary linter you might choose, and therefore more able to help you if you get stuck.</p>
 <ul>
-<li><a href="https://owasp.org/www-community/Fuzzing" class="uri">https://owasp.org/www-community/Fuzzing</a></li>
+<li><a href="https://pylint.pycqa.org/en/latest/how_tos/custom_checkers.html">How to Write a Checker</a></li>
+</ul>
+<h2 id="example-ideas">Example Ideas</h2>
+<ul>
+<li>Identify variables / functions with curse words in their names.</li>
+<li>Complain about single-letter function parameters (like <code>x</code>).</li>
+<li>Prevent lines from being shorter than a particular length.</li>
+<li>Enforce <code>CamelCase</code> for class or function names.</li>
 </ul>
 
 <div id="after">
     <a href="#">Back to top</a>
     <div id="after-links">
-        <a href="../.." title="Course Home">Home</a> |
+        <a href="../../.." title="Course Home">Home</a> |
         <a href="https://github.com/glesica/software-reliability" title="Course GitHub Page">GitHub</a>
     </div>
 </div>

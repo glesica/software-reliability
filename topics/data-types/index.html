@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>/topics/data-types [software reliability]</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <style>
+  div.sourceCode, pre.output {
+      border: 1px solid gainsboro;
+      box-shadow: 3px 3px 10px gainsboro;
+      display: block;
+      font-size: 0.9rem;
+      padding: 1.0rem;
+  }
+
+  figure {
+      text-align: center;
+  }
+
+  figcaption {
+      font-size: 0.8rem;
+      font-style: italic;
+      text-align: center;
+  }
+
+  #before {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid black;
+  }
+
+  #after {
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid black;
+  }
+  </style>
+</head>
+<body>
+<div id="banner">
+    <img src="media/header.jpg" alt="Course Header">
+</div>
+<div id="before">
+    Software Reliability and Testing
+    <div id="before-links">
+        <a href="../.." title="Course Home">Home</a> |
+        <a href="https://github.com/glesica/software-reliability" title="Course GitHub Page">GitHub</a>
+    </div>
+</div>
+<h1 id="data-types">Data Types</h1>
+<p>In programming, a “data type” (or just “type”) is a collection of one or more pieces of data that supports a particular set of operations. For example, an integer type might consist of 32 bits of storage and support addition, subtraction, and other arithmetic operations.</p>
+<p>Another way of looking at types is that they give meaning to raw data. For example, say we have the value <code>65</code> stored at some location in memory, what does it represent? It could be a number, or it could be a capital “A” (ASCII character), or it could be interpreted as <code>true</code> (boolean) since it is non-zero. Going a step further, it could be a temperature in celsius, or a distance in miles, or a frequency in hertz.</p>
+<p>Of course, the computer itself, the CPU, doesn’t care about types like integers and booleans, and most certainly doesn’t care about celcius or miles. To the computer, there are only strings of binary digits (bits) and the operations that can be performed on them. But that’s why virtually all software, aside from device drivers and the like, which need to interface with the hardware directly, is written in high-level programming languages that supply additional abstractions and allow us to add our own.</p>
+<p>The meaning behind the value, the type, tells us what we can logically do with it and how we ought to present it to the user. If we interpret that <code>65</code> as an ASCII character, then dividing it by <code>2</code> probably doesn’t make any sense. On the other hand, if <code>65</code> represents a distance between two points on a map, then dividing it in half could make perfect sense!</p>
+<p>Different programming languages handle types differently. Some require variables, and even literal expressions, to be annotated with their types, others do not. Some will automatically convert data between types when needed, others will not.</p>
+<p>There are many ways to implement types in a programming language, and there are many different opinions about what is most productive or effective. The most important thing for programmers is to form opinions from a place of knowledge and understanding rather than habit and prejudice.</p>
+<p>To that end, we are going to think a bit about what types are and what they mean, how they can implemented in programming languages, and then explore how several different real languages handle them.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>We’re going to use several different tools and languages for this little adventure. I’ve created a Docker image that contains all of them, so you shouldn’t need to install anything additional. However, if you’d like to install things locally, feel free.</p>
+<h2 id="types-in-the-world">Types in the World</h2>
+<p>Believe it or not, computer scientists didn’t invent types, they have always existed separately as an abstract concept and we interact with them every day of our lives. Everything in the world can be thought of as having one or more types. In fact, it would only be a little dramatic to say that reality itself is strongly, if not statically, typed.</p>
+<p>Think about your intuitive interactions with physical objects. You wouldn’t expect to drink your morning coffee from your phone, and you wouldn’t expect a coffee mug to run Instagram.</p>
+<p>This is because you implicitly understand that those objects possess certain capabilities, and lack others. Your phone can’t hold a substantial quantity of liquid, and your coffee mug probably doesn’t have a microprocessor and screen, let alone the necessary software to install and run a social media app.</p>
+<p>This is how types work in programming languages as well. Certain data types are useful in certain situations, and not in others and we, as programmers, are tasked with choosing the correct types for each circumstance we encounter.</p>
+<h2 id="untyped-languages">Untyped Languages</h2>
+<p>Some languages have little to no concept of types at all. In general, these languages are either very low-level or widely considered “toys”.</p>
+<p>Assembly languages, which are about as low-level as programming languages get, for example, generally have only a vague notion of types, usually limited to the behavior of the CPU itself.</p>
+<p>At the other end of the spectrum, <a href="https://en.wikipedia.org/wiki/Brainfuck">Brainfuck</a>, a “toy” language, has no concept of types beyond the fact that memory consists of integer bytes.</p>
+<p>In both cases, it is entirely up to the programmer to give meaning to a particular value stored in memory. For example, if a particular byte is used to store an ASCII character, then the programmer must remember not to assign it a value that is unavailable for ASCII encoding.</p>
+<h2 id="strong-and-weak-typing">Strong and Weak Typing</h2>
+<p>Strongly typed languages, such as Python, associate a specific type with each piece of data that determines how the data can be used. For example, a string can be “added” (concatenated) to another string, but it cannot be “added” to an integer:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="st">&quot;hello&quot;</span> <span class="op">+</span> <span class="st">&quot;5&quot;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">&#39;hello5&#39;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="st">&quot;hello&quot;</span> <span class="op">+</span> <span class="dv">5</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>Traceback (most recent call last):</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  File <span class="st">&quot;&lt;stdin&gt;&quot;</span>, line <span class="dv">1</span>, <span class="kw">in</span> <span class="op">&lt;</span>module<span class="op">&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="pp">TypeError</span>: can only concatenate <span class="bu">str</span> (<span class="kw">not</span> <span class="st">&quot;int&quot;</span>) to <span class="bu">str</span></span></code></pre></div>
+<p>On the other hand, weakly typed languages still associate a type with each piece of data, but they will coerce data between types (sometimes even in surprising and unintuitive ways) in order to avoid crashes. For example, compare the JavaScript interpreter session below to the Python session above:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="st">&quot;hello&quot;</span> <span class="op">+</span> <span class="st">&quot;5&quot;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;hello5&#39;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="st">&quot;hello&quot;</span> <span class="op">+</span> <span class="dv">5</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;hello5&#39;</span></span></code></pre></div>
+<p>These results shouldn’t surprise us because JavaScript is weakly typed (note that the term “weak” is not meant as a pejorative, it is simply descriptive). We still have types in JavaScript, but the language may change those types at runtime without telling anyone about it. As programmers, when we make mistakes in a weakly typed language, we often get incorrect results rather than errors.</p>
+<p>The “line” between strong and weak typing isn’t terribly bright or well-defined. In fact, both terms are a bit fuzzy. For this reason, it is probably better to think of the difference between strong and weak typing as a continuum rather than a dichotomy. So, while we may not always be able to decide whether a given language should be considered “strongly” or “weakly” typed, we can usually decide, between any two languages, which is <em>more</em> strongly (or weakly) typed.</p>
+<h3 id="benefits-of-strong-typing">Benefits of Strong Typing</h3>
+<h3 id="benefits-of-weak-typing">Benefits of Weak Typing</h3>
+<h2 id="static-and-dynamic-typing">Static and Dynamic Typing</h2>
+<p>Static type systems embed additional metadata within the source code of our programs, which can reduce the cognitive overhead of maintenance and refactoring and prevent certain bugs. Dynamic type systems, on the other hand, allow for incredibly flexible program designs.</p>
+<p>Students sometimes lament that statically typed languages like Java are difficult to use. However, this difficulty usually stems from an understandable, but incorrect, belief that types limit what a programmer can do with a language. On the contrary, static types allow the programmer to embed a great deal of additional information in the code itself, often with a minimal increase in verbosity.</p>
+<h2 id="type-inference">Type Inference</h2>
+<h2 id="compound-types">Compound Types</h2>
+<h2 id="union-and-intersection-types">Union and Intersection Types</h2>
+<h2 id="interfaces">Interfaces</h2>
+<p>In the physical world, when you walk into a room you’ve never been in before, you can recognize a lot of objects by their general shape. For instance, you can usually tell if something is a chair, or a bowl, or a broom.</p>
+<h2 id="optional-typing">Optional Typing</h2>
+<h2 id="top-and-bottom-types">Top and Bottom Types</h2>
+<h2 id="structural-and-nominal-typing">Structural and Nominal Typing</h2>
+<h2 id="parametric-types">Parametric Types</h2>
+<p>Sometimes called “generics” or “generic types”, parametric types simply allow us to add variables to our types. These work just like function or method parameters and, in fact, we call these variables “type parameters”. The difference is that whereas function parameters end up replaced by concrete data, type parameters end up replaced by concrete types.</p>
+<p>Parametric type syntax varies from language to language. We will use Rust in the examples below because its syntax is relatively standard and it’s just a fun language.</p>
+<p>Imagine a function with a single parameter, declared with a particular type:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> foo(x<span class="op">:</span> <span class="dt">i64</span>) <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ...</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Within the body of this function, we know <code>x</code> holds a 64 bit integer because its type is <code>i64</code>. We don’t know which integer it holds, however, and that is only determined when the function is called and passed an argument.</p>
+<p>In the meantime, however, we are perfectly free to manipulate <code>x</code> in any way that makes sense for its type. For example, we could double it and print the result.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> foo(x<span class="op">:</span> <span class="dt">i64</span>) <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ...</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span><span class="op">,</span> x <span class="op">*</span> x)<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>This will work just fine because we know that <code>x</code> is an integer, and we also know that integers can be multiplied together.</p>
+<p>Type parameters work the same way. Below, we have a similar function that has, effectively, two parameters. One is, again, <code>x</code>. The other is the type of <code>x</code>, called (by convention) <code>T</code> (for “type”).</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> foo<span class="op">&lt;</span>T<span class="op">&gt;</span>(x<span class="op">:</span> T) <span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ...</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Now there are two things we don’t know within the body of this function: the value of <code>x</code> (as before) <em>and</em> the type of <code>x</code>. This means that we can no longer assume that <code>x</code> can be multiplied since <code>T</code> could be, say, <code>String</code>, which would mean that <code>x</code> is a string (which can’t be multiplied).</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> foo<span class="op">&lt;</span>T<span class="op">&gt;</span>(x<span class="op">:</span> T) <span class="op">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span><span class="op">,</span> x <span class="op">*</span> x)<span class="op">;</span> <span class="co">// &lt;-- ERROR</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>If we try to compile this code we will get an error because the Rust compiler knows that there are potential values of <code>T</code> that won’t work (which would cause the program to crash).</p>
+<pre><code>➜ rustc parametric.rs
+error[E0369]: cannot multiply `T` by `T`
+ --&gt; parametric.rs:2:22
+  |
+2 |     println!(&quot;{}&quot;, x * x);
+  |                    - ^ - T
+  |                    |
+  |                    T
+  |
+help: consider restricting type parameter `T`
+  |
+1 | fn foo&lt;T: std::ops::Mul&lt;Output = T&gt;&gt;(x: T) {
+  |         +++++++++++++++++++++++++++</code></pre>
+<p>This means that we are limited to operations supported by every possible type, and there aren’t many of these. In fact, it isn’t even possible to print any value, so the version below won’t compile either.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> foo<span class="op">&lt;</span>T<span class="op">&gt;</span>(x<span class="op">:</span> T) <span class="op">{</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span><span class="op">,</span> x)<span class="op">;</span> <span class="co">// &lt;-- ERROR</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>The most obvious thing we can do here is restrict (or “bound”) the value of the type paramter. As the syntax suggests, this is a little like specifying a type for the type. In this case, we require that the type passed for <code>T</code> is compatible with <code class="sourceCode rust"><span class="pp">std::fmt::</span><span class="bu">Display</span></code>, which is a “trait” (like an interface) that allows a piece of data to be printed.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::fmt::</span><span class="bu">Display</span><span class="op">;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> foo<span class="op">&lt;</span>T<span class="op">:</span> <span class="bu">Display</span><span class="op">&gt;</span>(x<span class="op">:</span> T) <span class="op">{</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">&quot;{}&quot;</span><span class="op">,</span> x)<span class="op">;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Now we can call <code>foo</code> with any value that is compatible with <code>std::fmt::Display</code> and the code will compile and print the value when run.</p>
+<p>Bounded type parameters are often what we want. However, there are uses for unbounded type parameters as well. For example, the Rust standard library contains a type called <code class="sourceCode rust"><span class="dt">Vec</span><span class="op">&lt;</span>T<span class="op">&gt;</span></code> with an unbounded type parameter. This type implements a “vector” (similar to an array or list). The type parameter <code>T</code> specifies the type of the elements stored in a given vector. Since the vector doesn’t actually <em>do</em> anything with the elements it stores, there’s no need to bound the type paramter.</p>
+<p>For example, below we create a vector to store integers and store a value in it. When we extract that value back out, it has the correct type even though <code class="sourceCode rust"><span class="dt">Vec</span><span class="op">&lt;</span>T<span class="op">&gt;</span></code> itself doesn’t know anything about the type of data we stored (since the type parameter is unbounded). This means that from “inside” the vector, no operations can be performed on the data stored in the vector, but from “outside” (where we know the type), we can treat the values like the integers they are.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode rust"><code class="sourceCode rust"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> <span class="kw">mut</span> numbers<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">i64</span><span class="op">&gt;</span> <span class="op">=</span> <span class="dt">Vec</span><span class="pp">::</span>new()<span class="op">;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  numbers<span class="op">.</span>push(<span class="dv">5</span>)<span class="op">;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> x <span class="op">=</span> numbers<span class="op">.</span>get(<span class="dv">0</span>)<span class="op">.</span>unwrap()<span class="op">;</span> <span class="co">// x is an i64</span></span></code></pre></div>
+<h2 id="liskov-substitution-principle">Liskov Substitution Principle</h2>
+<p>The <a href="https://doi.org/10.1145%2F197320.197383">Liskov Substitution Principle</a> (LSP) is a well-known principle in object-oriented programming that, put simply, states that it should be possible to replace an instance of a particular type with an instance of any of its subtypes without changing the behavior of the program in question.</p>
+<p>Most statically typed languages enforce some level of compliance with the LSP, at least purely as a matter of types (behavior aside). But it is still important for us, as programmers, to bear it in mind. Additionally, it is easier to violate the LSP by accident in dynamically typed languages.</p>
+<h2 id="type-relationships">Type Relationships</h2>
+
+<div id="after">
+    <a href="#">Back to top</a>
+    <div id="after-links">
+        <a href="../.." title="Course Home">Home</a> |
+        <a href="https://github.com/glesica/software-reliability" title="Course GitHub Page">GitHub</a>
+    </div>
+</div>
+</body>
+</html>

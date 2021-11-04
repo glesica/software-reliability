@@ -11,21 +11,21 @@ own directory, which also contains any supplementary files or other resources.
         course to ensure that everyone has the same software (and versions of
         that software) available to them.
   1. Static Analysis
-     a. [Cyclomatic Complexity](cyclomatic-complexity/)
-     a. [Formatting](formatting/)
-     a. [Linting](linting/)
-     a. [Type Checking](type-checking/)
+     a. [Code Complexity](code-complexity/)
+     a. [Linters and Formatters](linters-and-formatters/)
+     a. [Data Types](data-types/)
   1. Dynamic Analysis
-     a. Functional Testing
-     a. Integration Testing
-     a. Unit Testing
+     a. [Functional Testing](functional-testing)
+     a. [Integration Testing](integration-testing)
+     a. [Unit Testing](unit-testing)
      a. [Fuzz Testing](fuzz-testing/)
      a. Property-based Testing
+     a. Testing Stochastic Code
      a. Code Coverage
   1. Design Techniques
-     a. Dependency Injection
-     a. Interfaces
-     a. Pure Functions
+     a. [Dependency Injection](dependency-injection)
+     a. [Interfaces](interfaces)
+     a. [Pure Functions](pure-functions)
      a. Reproducibility
      a. Single Responsibility Principle
      a. The Factory Pattern
