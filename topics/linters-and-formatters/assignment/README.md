@@ -2,7 +2,7 @@
 
 We're going to add a "lint" to an existing linter. The lint can do anything you
 like, but some suggestions are provided below. Don't worry if your lint isn't
-actually useful. The goal is to gain some experience working with a real-world
+actually helpful. The goal is to gain some experience working with a real-world
 linter and adding code to an existing software project. That being said, your
 lint does need to *work* (in other words, your code needs to run and do what it
 is intended to do).
@@ -17,9 +17,10 @@ choose, and therefore more able to help you if you get stuck.
 
   * [How to Write a Checker](https://pylint.pycqa.org/en/latest/how_tos/custom_checkers.html)
 
-## Example Ideas
+## Sample Ideas
 
   * Identify variables / functions with curse words in their names.
-  * Complain about single-letter function parameters (like `x`).
-  * Prevent lines from being shorter than a particular length.
-  * Enforce `CamelCase` for class or function names.
+  * Find comments with your name in them and suggest giving you a compliment
+  * Suggest renaming all function parameters after different Pokemon
+
+But feel free to come up with your own idea!

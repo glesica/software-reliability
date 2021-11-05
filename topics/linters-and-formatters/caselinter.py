@@ -1,20 +1,20 @@
 import ast
 from typing import Any, Iterable, TextIO
 
-    
+
 def _is_camel(value: str) -> bool:
     if "_" in value:
         return False
     if value[0].upper() != value[0]:
         return False
-    
+
     return True
 
 
 def _is_snake(value: str) -> bool:
     if value.lower() != value:
         return False
-    
+
     return True
 
 
@@ -49,10 +49,10 @@ if __name__ == "__main__":
     path = sys.argv[1]
     with open(path, "r") as file:
         errors = check_file(file)
-    
+
     exit_code = 0
     for error in errors:
         exit_code = 1
         print(f"{path}: {error}")
-    
+
     sys.exit(exit_code)

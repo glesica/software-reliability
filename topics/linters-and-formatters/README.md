@@ -70,7 +70,15 @@ function.
 All of these choices, and more, can be enforced with linters, which can save a
 team a lot of time and energy to put toward building great software.
 
-TODO
+### Formatters
+
+Like linters, formatters attempt to enforce certain style conventions on code.
+However, instead of simply finding incorrect code, they can also rewrite entire
+source files to conform to a set of style guidelines.
+
+The typical workflow is for a developer to run the formatter before submitting a
+pull request or otherwise merging code. That way, any style issues are corrected
+and the developer doesn't have to spend the time to fix them manually.
 
 ## Practices
 
@@ -93,6 +101,27 @@ languages, along with simple usage examples and recommendations.
 Black is a formatter for Python. It can be configured based on the preferences
 of the user and it can automatically modify code so that it is correctly
 formatted.
+
+Black has a command line option, `-c` that allows you to pass it small pieces of
+source code to be formatted. We can use this for some very simple examples:
+
+```output
+$ black -c "a=4"
+a = 4
+
+$ black -c "foo( 5 )"
+foo(5)
+```
+
+Ordinarily, Black is run against a Python file and the file is modified in-place
+with the formatted content.
+
+```output
+$ black caselinter.py
+reformatted caselinter.py
+All done! ✨ 🍰 ✨
+1 file reformatted.
+```
 
 ### Clippy (Rust)
 
