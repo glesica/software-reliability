@@ -21,6 +21,7 @@ choose, and therefore more able to help you if you get stuck.
 
   * Identify variables / functions with curse words in their names.
   * Find comments with your name in them and suggest giving you a compliment
-  * Suggest renaming all function parameters after different Pokemon
+  * Suggest renaming function parameters after different Pokemon
+  * Look for "TODO" comments and produce an error if there are too many
 
 But feel free to come up with your own idea!

@@ -261,7 +261,7 @@
 <p>Tools that help us detect problems, or potential problems, in our code are often referred to as “linters” (because they find “lint” in our code, get it?). There are many, many linters in existence, for many different programming languages. We will take a look at a few examples and then write our own linter.</p>
 <h2 id="style-and-formatting">Style and Formatting</h2>
 <p>You might not think that coding style would be a major concern, but it is. There are a few famous style debates, and hundreds of smaller ones faced by software development teams every day.</p>
-<p>Probably the most famous debate has to do with the placement of curly braces in C-like languages. There are a number of different, syntactically valid ways to situation curly braces, and everyone has a favorite.</p>
+<p>Probably the most famous debate has to do with the placement of curly braces in C-style languages. There are a number of different, syntactically valid ways to situation curly braces, and everyone has a favorite.</p>
 <p>Some of the possible curly brace styles for conditionals are shown below. Note, however, that functions are often treated differently, which creates a combinatorial explosion of possible styles. Which do you prefer?</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// K&amp;R</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(...)</span> <span class="op">{</span></span>
@@ -291,7 +291,7 @@
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span></span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span></code></pre></div>
-<p>Clearly, programmers have always had a lot of free time on their hands. However, we still need to get work done (eventually). For this reason, it is generally considered a good idea for a team to decide how the code for a project should work and enforce those decisions automatically… with linters.</p>
+<p>Clearly, programmers have always had a lot of free time on their hands. However, we still need to get work done (eventually). For this reason, it is generally considered a good idea for a team to decide on code standards for a project ahead of time and enforce those decisions automatically… with linters and formatters.</p>
 <p>There are other, less controversial, examples. Single-letter variable names are often considered bad style, as are variable names that do not conform to the conventions of the language in use (more on this later). It is also widely viewed as good style to include documentation at the beginning of each class and function.</p>
 <p>All of these choices, and more, can be enforced with linters, which can save a team a lot of time and energy to put toward building great software.</p>
 <h3 id="formatters">Formatters</h3>
@@ -361,6 +361,9 @@ All done! ✨ 🍰 ✨
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">True</span></span></code></pre></div>
 <h3 id="visitor-pattern">Visitor Pattern</h3>
 <p>Before we go further, we need to take a little detour.</p>
+<figure>
+<img src="detour.png" alt="Detour" /><figcaption aria-hidden="true">Detour</figcaption>
+</figure>
 <p>The <a href="https://en.wikipedia.org/wiki/Visitor_pattern">visitor pattern</a> is a way to add additional functionality to a group of related classes. It is often used to process trees and other nested data structures. Since, as the name suggests, the Abstract Syntax Tree (AST) produced by a parser for a programming language is such a data structure, we can use a visitor to process the AST and identify mis-named classes and functions.</p>
 <p>First, we will take a look at a simple visitor example using a tree that consists of two kinds of vertices. We will refer to an interior vertex (that is, on that has children) as a “node”, and a leaf vertex (one without children) as a “leaf”.</p>
 <p>A simple tree, where each leaf stores a single integer, might look like the one in the diagram below.</p>

@@ -18,7 +18,7 @@ are a few famous style debates, and hundreds of smaller ones faced by software
 development teams every day.
 
 Probably the most famous debate has to do with the placement of curly braces in
-C-like languages. There are a number of different, syntactically valid ways to
+C-style languages. There are a number of different, syntactically valid ways to
 situation curly braces, and everyone has a favorite.
 
 Some of the possible curly brace styles for conditionals are shown below. Note,
@@ -58,8 +58,9 @@ if (...)
 
 Clearly, programmers have always had a lot of free time on their hands. However,
 we still need to get work done (eventually). For this reason, it is generally
-considered a good idea for a team to decide how the code for a project should
-work and enforce those decisions automatically... with linters.
+considered a good idea for a team to decide on code standards for a project
+ahead of time and enforce those decisions automatically... with linters and
+formatters.
 
 There are other, less controversial, examples. Single-letter variable names are
 often considered bad style, as are variable names that do not conform to the
@@ -191,6 +192,8 @@ def _is_snake(value: str) -> bool:
 
 Before we go further, we need to take a little detour.
 
+![Detour](detour.png)
+
 The [visitor pattern](https://en.wikipedia.org/wiki/Visitor_pattern) is a way to
 add additional functionality to a group of related classes. It is often used to
 process trees and other nested data structures.  Since, as the name suggests,
@@ -306,10 +309,12 @@ Python `ast` module is no exception, as we will see.
 
 ### Case Visitor
 
-The actual visitor implementation is shown below. Visitor methods are
-implemented using runtime reflection, the base class looks for a method called
-`visit_X` where `X` is the class name of the node to be processed. If such a
-method is not found, a generic method, on the base class, is run instead.
+Now that we understand the Visitor Pattern, we can make use of the Python `ast`
+module to create the rest of our linter. The actual visitor implementation is
+shown below.  Visitor methods are implemented using runtime reflection, the base
+class looks for a method called `visit_X` where `X` is the class name of the
+node to be processed. If such a method is not found, a generic method, on the
+base class, is run instead.
 
 ```python
 import ast
@@ -329,8 +334,8 @@ class CaseVisitor(ast.NodeVisitor):
         return super().generic_visit(node)
 ```
 
-We need to "visit" two kinds of AST node: class definitions and function (and
-method) definitions.  In both cases, we simply check to see whether the name
+We need to "visit" two kinds of AST node: class definitions and function /
+method definitions. In both cases, we simply check to see whether the name
 follows the rules we established earlier and encoded in the `_is_camel` and
 `_is_snake` functions, and add an error if not.
 
@@ -390,7 +395,7 @@ caselinter.py: function visit_FunctionDef should be snake_case
 ```
 
 Since we can't "fix" these method names (they are relied upon by the `ast`
-module) we could add a way to ignore those names. This is quite common.  One
+module) we could add a way to ignore those names. This is quite common. One
 option would be to look for a special comment like `# caselinter: ignore` and
 skip the following line. This is left as an exercise for the reader.
 

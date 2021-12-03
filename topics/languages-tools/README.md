@@ -11,6 +11,10 @@ easily.
 
 ## Languages
 
+We will use a variety of programming languages in this course.
+
+TODO
+
 ### C
 
   * [Tutorial](https://www.programiz.com/c-programming)
@@ -65,15 +69,41 @@ family) commonly used to produce domain specific languages (DSLs).
 
 ## Tools
 
+Software developers use tools to help them build things more effectively, just
+as a carpenter uses tools like a hammer or saw. We will explore a number of
+different tools as part of this course, but there are a few listed below that
+students ought to be at least somewhat familiar with in order to complete
+assignments.
+
+### Docker
+
+  * [Website](http://docker.com)
+
+Docker is a container runtime for Linux. A container is an isolated filesystem
+that acts similarly to a virtual machine in that it can run a different
+operating system and contain different software than the "host" system. We will
+use Docker as a way to provide various tools in a consistent environment so that
+we are all running the exact same version of a given tool.
+
+We will go over how to use Docker in class before it becomes necessary.
+
 ### Git
 
   * [Website](https://git-scm.com)
   * [Tutorial](https://git-scm.com/doc) (videos)
   * [Book](https://git-scm.com/book/en/v2)
 
-Git is a distributed version control system developed for use by the Linux
-kernel team. It has gained widespread adoption in both commercial and open
+Git is a distributed version control system originally developed for use by the
+Linux kernel team. It has gained widespread adoption in both commercial and open
 source software development.
 
 ### GitHub
 
+  * [Website](https://github.com)
+
+GitHub is a service used to host and interact with Git repositories. It includes
+many features that aren't built into Git itself, such as issue tracking and a
+system for conducting code reviews.
+
+Students will need a GitHub account and we will go over certain GitHub features
+in class.

@@ -34,6 +34,7 @@ own directory, which also contains any supplementary files or other resources.
      a. Code Review
      a. Design by Contract
      a. Test-driven Development
+     a. [Technical Debt](technical-debt)
   1. Software in the Wild
      a. Analytics
      a. Logging
