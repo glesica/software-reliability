@@ -425,7 +425,7 @@ All done! ✨ 🍰 ✨
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(visitor.total)</span></code></pre></div>
 <p>The Visitor Pattern is widely used for processing and manipulating ASTs. The Python <code>ast</code> module is no exception, as we will see.</p>
 <h3 id="case-visitor">Case Visitor</h3>
-<p>The actual visitor implementation is shown below. Visitor methods are implemented using runtime reflection, the base class looks for a method called <code>visit_X</code> where <code>X</code> is the class name of the node to be processed. If such a method is not found, a generic method, on the base class, is run instead.</p>
+<p>Now that we understand the Visitor Pattern, we can make use of the Python <code>ast</code> module to create the rest of our linter. The actual visitor implementation is shown below. Visitor methods are implemented using runtime reflection, the base class looks for a method called <code>visit_X</code> where <code>X</code> is the class name of the node to be processed. If such a method is not found, a generic method, on the base class, is run instead.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ast</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CaseVisitor(ast.NodeVisitor):</span>
@@ -441,7 +441,7 @@ All done! ✨ 🍰 ✨
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> _is_snake(node.name):</span>
 <span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.errors.append(<span class="ss">f&quot;function </span><span class="sc">{</span>node<span class="sc">.</span>name<span class="sc">}</span><span class="ss"> should be snake_case&quot;</span>)</span>
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">super</span>().generic_visit(node)</span></code></pre></div>
-<p>We need to “visit” two kinds of AST node: class definitions and function (and method) definitions. In both cases, we simply check to see whether the name follows the rules we established earlier and encoded in the <code>_is_camel</code> and <code>_is_snake</code> functions, and add an error if not.</p>
+<p>We need to “visit” two kinds of AST node: class definitions and function / method definitions. In both cases, we simply check to see whether the name follows the rules we established earlier and encoded in the <code>_is_camel</code> and <code>_is_snake</code> functions, and add an error if not.</p>
 <h3 id="application">Application</h3>
 <p>We use the visitor class we defined above in a function called <code>check_file</code>. This function accepts a Python source code file, parses it, and applies the visitor. It returns the error messages collected by the visitor.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> check_file(src: TextIO) <span class="op">-&gt;</span> Iterable[<span class="bu">str</span>]:</span>
