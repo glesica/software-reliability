@@ -18,6 +18,7 @@ own directory, which also contains any supplementary files or other resources.
      a. [Functional Testing](functional-testing)
      a. [Integration Testing](integration-testing)
      a. [Unit Testing](unit-testing)
+     a. [Choosing Test Values](choosing-test-values)
      a. [Fuzz Testing](fuzz-testing/)
      a. Property-based Testing
      a. Testing Stochastic Code

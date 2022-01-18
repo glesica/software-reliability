@@ -181,4 +181,13 @@ goal, which can help guide your decisions, should be to have robust tests. This
 means that they don't fail unless there's an actual problem.
 
 In the example above, we can change either the `Person` class or the `say_hello`
-function and only the relevant tests will fail.
+function and only the relevant tests will fail. This is a desirable property as
+it simplifies future maintenance on code.
+
+Performance is another consideration. Unit tests are generally expected to run
+quickly (so that they can be run often), so if a test requires time-consuming
+setup it should probably be a functional test.
+
+## Further Reading
+
+  * [Lecture slides](https://docs.google.com/presentation/d/1BMIU80of7iG-OX2OtsjuKApYSkkapMwqJD_ZPvIN8hU/edit?usp=sharing)
