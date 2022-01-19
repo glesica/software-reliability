@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>/topics [software reliability]</title>
+  <title>/topics/single-responsibility [software reliability]</title>
   <style>
     html {
       line-height: 1.5;
@@ -186,67 +186,23 @@
 <div id="before">
     Software Reliability and Testing
     <div id="before-links">
-        <a href=".." title="Course Home">Home</a> |
+        <a href="../.." title="Course Home">Home</a> |
         <a href="https://github.com/glesica/software-reliability" title="Course GitHub Page">GitHub</a>
     </div>
 </div>
-<h1 id="topics">Topics</h1>
-<p>We expect to cover the following topics during the semester. Each topic has its own directory, which also contains any supplementary files or other resources.</p>
-<ol type="1">
-<li>Introduction
-<ol type="1">
-<li><a href="reliability-defined/">Reliability Defined</a></li>
-<li><a href="linux-ecosystem/">The Linux Ecosystem</a></li>
-<li><a href="languages-tools/">Languages and Tools</a></li>
-<li><a href="docker/">Docker</a></li>
-</ol></li>
-<li>Dynamic Analysis
-<ol type="1">
-<li><a href="functional-testing">Functional Testing</a></li>
-<li><a href="integration-testing">Integration Testing</a></li>
-<li><a href="unit-testing">Unit Testing</a></li>
-<li><a href="choosing-test-values">Choosing Test Values</a></li>
-<li><a href="fuzz-testing/">Fuzz Testing</a></li>
-<li>Property-based Testing</li>
-<li>Testing Stochastic Code</li>
-<li>Code Coverage</li>
-</ol></li>
-<li>Static Analysis
-<ol type="1">
-<li><a href="code-complexity/">Code Complexity</a></li>
-<li><a href="linters-and-formatters/">Linters and Formatters</a></li>
-<li><a href="data-types/">Data Types</a></li>
-</ol></li>
-<li>Design Techniques
-<ol type="1">
-<li><a href="dependency-injection/">Dependency Injection</a></li>
-<li><a href="interfaces/">Interfaces</a></li>
-<li><a href="pure-functions/">Pure Functions</a></li>
-<li>Reproducibility</li>
-<li><a href="single-responsibility/">Single Responsibility Principle</a></li>
-<li><a href="factory-pattern/">The Factory Pattern</a></li>
-</ol></li>
-<li>Development Methodologies
-<ol type="1">
-<li>Behavior-driven Development</li>
-<li>Code Review</li>
-<li>Design by Contract</li>
-<li>Test-driven Development</li>
-<li><a href="technical-debt">Technical Debt</a></li>
-</ol></li>
-<li>Software in the Wild
-<ol type="1">
-<li>Analytics</li>
-<li>Logging</li>
-<li>Monitoring</li>
-<li>Bug Reporting and Triage</li>
-</ol></li>
-</ol>
+<h1 id="single-responsibility-principle">Single Responsibility Principle</h1>
+<p>This principle basically states that a given module, or other unit of code, should do one thing in the context of the overall software package. For example, if you have a class called SpellChecker, it should do one thing (probably check spelling). It shouldn’t participate in the layout of a document, or even perhaps grammar checking. It probably also shouldn’t be responsible for creating the interface elements shown to the user during the spell checking process. This idea is sometimes also called “cohesion”.</p>
+<p>This principle applies to software testing because a module that has a single responsibility will often be easier to test, and easier to change in the future. This is partially because dependencies are minimized, and partially because simpler, more cohesive modules are less likely to change frequently. Once they work they tend to continue to work, which is really our ultimate goal.</p>
+<h2 id="further-reading">Further Reading</h2>
+<ul>
+<li>https://en.wikipedia.org/wiki/Single_responsibility_principle</li>
+<li>https://en.wikipedia.org/wiki/Cohesion_(computer_science)</li>
+</ul>
 
 <div id="after">
     <a href="#">Back to top</a>
     <div id="after-links">
-        <a href=".." title="Course Home">Home</a> |
+        <a href="../.." title="Course Home">Home</a> |
         <a href="https://github.com/glesica/software-reliability" title="Course GitHub Page">GitHub</a>
     </div>
 </div>

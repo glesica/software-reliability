@@ -22,12 +22,12 @@ own directory, which also contains any supplementary files or other resources.
      1. [Linters and Formatters](linters-and-formatters/)
      1. [Data Types](data-types/)
   1. Design Techniques
-     1. [Dependency Injection](dependency-injection)
-     1. [Interfaces](interfaces)
-     1. [Pure Functions](pure-functions)
+     1. [Dependency Injection](dependency-injection/)
+     1. [Interfaces](interfaces/)
+     1. [Pure Functions](pure-functions/)
      1. Reproducibility
-     1. Single Responsibility Principle
-     1. The Factory Pattern
+     1. [Single Responsibility Principle](single-responsibility/)
+     1. [The Factory Pattern](factory-pattern/)
   1. Development Methodologies
      1. Behavior-driven Development
      1. Code Review
