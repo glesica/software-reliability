@@ -4,41 +4,39 @@ We expect to cover the following topics during the semester. Each topic has its
 own directory, which also contains any supplementary files or other resources.
 
   1. Introduction
-     a. [Reliability Defined](reliability-defined/)
-     a. The Linux Ecosystem
-     a. [Languages and Tools](languages-tools/)
-     a. Docker - a tutorial on the container environment we will use during this
-        course to ensure that everyone has the same software (and versions of
-        that software) available to them.
-  1. Static Analysis
-     a. [Code Complexity](code-complexity/)
-     a. [Linters and Formatters](linters-and-formatters/)
-     a. [Data Types](data-types/)
+     1. [Reliability Defined](reliability-defined/)
+     1. [The Linux Ecosystem](linux-ecosystem/)
+     1. [Languages and Tools](languages-tools/)
+     1. [Docker](docker/)
   1. Dynamic Analysis
-     a. [Functional Testing](functional-testing)
-     a. [Integration Testing](integration-testing)
-     a. [Unit Testing](unit-testing)
-     a. [Choosing Test Values](choosing-test-values)
-     a. [Fuzz Testing](fuzz-testing/)
-     a. Property-based Testing
-     a. Testing Stochastic Code
-     a. Code Coverage
+     1. [Functional Testing](functional-testing)
+     1. [Integration Testing](integration-testing)
+     1. [Unit Testing](unit-testing)
+     1. [Choosing Test Values](choosing-test-values)
+     1. [Fuzz Testing](fuzz-testing/)
+     1. Property-based Testing
+     1. Testing Stochastic Code
+     1. Code Coverage
+  1. Static Analysis
+     1. [Code Complexity](code-complexity/)
+     1. [Linters and Formatters](linters-and-formatters/)
+     1. [Data Types](data-types/)
   1. Design Techniques
-     a. [Dependency Injection](dependency-injection)
-     a. [Interfaces](interfaces)
-     a. [Pure Functions](pure-functions)
-     a. Reproducibility
-     a. Single Responsibility Principle
-     a. The Factory Pattern
+     1. [Dependency Injection](dependency-injection)
+     1. [Interfaces](interfaces)
+     1. [Pure Functions](pure-functions)
+     1. Reproducibility
+     1. Single Responsibility Principle
+     1. The Factory Pattern
   1. Development Methodologies
-     a. Behavior-driven Development
-     a. Code Review
-     a. Design by Contract
-     a. Test-driven Development
-     a. [Technical Debt](technical-debt)
+     1. Behavior-driven Development
+     1. Code Review
+     1. Design by Contract
+     1. Test-driven Development
+     1. [Technical Debt](technical-debt)
   1. Software in the Wild
-     a. Analytics
-     a. Logging
-     a. Monitoring
-     a. Bug Reporting and Triage
+     1. Analytics
+     1. Logging
+     1. Monitoring
+     1. Bug Reporting and Triage
 
