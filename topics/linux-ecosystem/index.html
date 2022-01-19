@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>/topics/linux-ecosystem [software reliability]</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <style>
+  div.sourceCode, pre.output {
+      border: 1px solid gainsboro;
+      box-shadow: 3px 3px 10px gainsboro;
+      display: block;
+      font-size: 0.9rem;
+      padding: 1.0rem;
+  }
+
+  figure {
+      text-align: center;
+  }
+
+  figcaption {
+      font-size: 0.8rem;
+      font-style: italic;
+      text-align: center;
+  }
+
+  #before {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid black;
+  }
+
+  #after {
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid black;
+  }
+  </style>
+</head>
+<body>
+<div id="banner">
+    <img src="media/header.jpg" alt="Course Header">
+</div>
+<div id="before">
+    Software Reliability and Testing
+    <div id="before-links">
+        <a href="../.." title="Course Home">Home</a> |
+        <a href="https://github.com/glesica/software-reliability" title="Course GitHub Page">GitHub</a>
+    </div>
+</div>
+<h1 id="the-linux-ecosystem">The Linux Ecosystem</h1>
+<p>We’re going to be using Linux for this course and, in particular, the Linux command line. Many of the tools we will use are also available for Windows in various forms, and macOS. In many cases, in fact, the Linux commands we use will work verbatim on a Mac.</p>
+<p>While there is nothing wrong with developing software in a Windows environment, for the sake of this course it is more efficient if we all use the same basic tools. Additionally, Unix and Linux environments are incredibly common in modern software development (most of the web runs on them) and many of the concepts are transferable to modern Windows.</p>
+<h2 id="directory-structure">Directory Structure</h2>
+<p>Unix / Linux systems arrange their files quite differently from Windows systems. In Windows, the top-most node in the file and directory hierarchy is the disk drive (<code>C</code>, <code>D</code>, and so on) and the directories are arranged into a forest of trees. There is a hierarchy under each drive and the drives themselves do not share a common parent, although you might think of “My Computer” or “Computer” (in more recent versions of Windows) as the shared parent.</p>
+<p>On the other hand, the Unix / Linux directory structure looks something like this. The path to the top level is <code>/</code>, and it does not correspond to any particular disk drive. In fact, any disk drive can be “mounted” at any point under <code>/</code> in the hierarchy. For example, it is common to store user files (“home”) on their own partition or drive. It is also common for external storage devices to appear under the “mnt” directory. This might seem confusing at first, but it is actually quite nice.</p>
+<p>There are two special directory names. The first is <code>.</code> (a single period), which refers to the current working directory. The second is <code>..</code> (two periods) which refers to the directory above the current working directory or above its current position in a path. For example, the path <code>/home/george/..</code> is equivalent to the path <code>/home/</code>.</p>
+<h2 id="permissions">Permissions</h2>
+<p>File permissions, that is, who can access which files, are often confusing for new users of Unix / Linux systems. Historically, consumer Windows systems haven’t had much in the way of file permissions. NTFS (the filesystem used by modern versions of Windows) changed this, but most users still don’t have to worry much about file permissions because Windows includes a feature called User Account Control (UAC) that largely abstracts permissions away from the user.</p>
+<p>Modern Unix and Linux systems also generally allow the user to ignore file permissions, but there are times when they become important, so they are worth understanding, at least at a basic level. You can view permissions for a file using the “ls” command (see below) like so:</p>
+<pre><code>$ ls -l
+total 12K
+-rw-r--r-- 1 george george 244 Aug  4 18:50 README.md
+-rw-r--r-- 1 george george 344 Aug  4 19:24 tags
+-rwxr-xr-x 1 george george 703 Aug  4 19:24 test-bc.bats</code></pre>
+<p>The first part of permissions is the concept of ownership. Each file has an owner, a user who is associated with that file. Additionally, each file has a group. A group can have one or more users as members. Groups allow roles to be assigned to different users. For example, a system might have a “web” group for users who are allowed to modify files served by a web server. Those files would then be assigned to the “web” group. In the example above, both the owner and group are “george”. Each user has their own group default and files in a user’s home directory have this group assigned to them.</p>
+<p>There are three permission types: read, write, and execute. The “read” permission allows the contents of a file to be inspected. The “write” permission allows a file to be written to or deleted. The “execute” permission allows a file to be run as a program. The first two are probably pretty clear, but why a separate permission for executing a file? It’s partly for security, so that you can’t run something that isn’t intended to be run and might have negative consequences if it were to be run. Additionally, whether a file is executable or not can determine what happens when you, say, double-click on it in a file manager.</p>
+<p>Each of these permission types can be applied to one or more of three different scopes: owner, group, and other. The first determines what the owner of the file can do, the second determines what members of the file’s group can do, and the third determines what everyone else can do. In the example above, the owner can read (“r”) and write (“w”) to all three files and execute (“x”) the third file. The group can read all three and execute the third, and others can do the same.</p>
+<p>Further reading:</p>
+<ul>
+<li>https://en.wikipedia.org/wiki/File_system_permissions#Traditional_Unix_permissions</li>
+<li>https://kb.iu.edu/d/abdb</li>
+<li>https://help.unc.edu/help/how-to-use-unix-and-linux-file-permissions/</li>
+</ul>
+<h2 id="basic-command-line-usage">Basic Command Line Usage</h2>
+<p>A command line is a user interface metaphor, just like a window or a button. The user types a command, and the computer executes it and prints out the results and any error messages. The handy thing about a command line interface is that common sequences of commands can be strung together into scripts for convenience. Another nice thing is that command line interfaces are largely unambiguous, a complex command can be copy-pasted or sent via email very easily.</p>
+<p>There is nothing that intrinsically connects command line interfaces to Unix / Linux. Nor is there any reason that a command line can only be used for certain system-related tasks. In fact, many popular Windows applications have their own, specialized, command line interfaces. Some examples include the popular design application AutoCAD, and MS SQL Server, and of course Windows has always had an emulated DOS prompt, though most people don’t use it very often. However, it is very common for Unix / Linux users to work at a command line to this day.</p>
+<h3 id="getting-started">Getting Started</h3>
+<p>First, open up a terminal. On a Mac, there is an application called “Terminal” installed by default, but you might want to try iTerm2, a popular alternative, instead. On most Linux distributions there is a program called “Terminal”, although it might also be called “Konsole” or “Gnome Terminal”. These applications don’t provide a command line by themselves. Instead, they run, and provide an interface for, a program called a “shell” that actually accepts commands and prints output and errors.</p>
+<p>There are many shells, some old and some new. Your terminal probably uses a shell called “Bash”. You’ll find that many shells have names that end in “sh”, which is an abbreviation for “shell”. Some others are Zsh, KornShell, C Shell, and Fish (which is quite different from the rest). I suggest that you stick with Bash for now.</p>
+<p>Below, you can see what my shell looks like when it first starts. It is common for shells to display a “$” character just before the user’s input, this is called the “prompt”. It is customary for this prompt to use the “#” character for the root (super) user. This reminds you to be careful when logged in as root. My prompt is heavily customized because I spend a lot of time in a terminal, this is pretty common among software developers and the like.</p>
+<h3 id="files-and-directories">Files and Directories</h3>
+<p>Using our shell we can manipulate files and directories. Type <code>pwd</code> (which stands for “print working directory”) and press the Enter key. This is an example of a “command” (hence “command line”). This will print the path to the current directory, called the “working directory”.</p>
+<p>Next, it would be helpful to see a list of files and directories inside of the current directory. To do this, use the <code>ls</code> (short for <code>list</code>) command. If you’d like to see more detail about the contents of the current directory, try <code>ls -l</code>. The <code>-l</code> is called a <code>flag</code> or an <code>option</code>. These are used to change the behavior of commands and they vary from command to command.</p>
+<p>If you need to know which options are available for a given command, you can generally use the <code>-h</code> or <code>--help</code> options to find out, most commands support these. Let’s try it with the <code>ls</code> command: <code>ls --help</code> (on my machine, this command accepts the latter option). Here’s the output (I’ve truncated it a bit since it’s so long):</p>
+<pre><code>Usage: ls [OPTION]... [FILE]...
+List information about the FILEs (the current directory by default).
+Sort entries alphabetically if none of -cftuvSUX nor --sort is specified.
+
+Mandatory arguments to long options are mandatory for short options too.
+  -a, --all                  do not ignore entries starting with .
+
+...</code></pre>
+<p>The first line tells us how to use this command. In this case, we type “ls”, followed by zero or more options (flags) and zero or more files or directories. The flags available to us are then listed, the “-a” flag stands for “all” and shows all files, even hidden files (those preceded by a period).</p>
+<p>Here are a few more file and directory commands you might find useful. We’ll talk about each of these in class, and you can always search for them online if you want to learn more.</p>
+<ul>
+<li><code>cd</code> - change the current working directory to the current user’s home directory</li>
+<li><code>cd foo</code> - change the current working directory to the directory called <code>foo</code> in the current working directory</li>
+<li><code>mkdir foo</code> - creates a new directory called <code>foo</code> in the current working directory</li>
+<li><code>rmdir foo</code> - removes the directory called <code>foo</code> (assuming it is empty) from the current working directory</li>
+<li><code>touch foo.txt</code> - creates an empty file called <code>foo.txt</code> in the current working directory</li>
+<li><code>rm foo.txt</code> - removes the file called <code>foo.txt</code> from the current working directory</li>
+<li><code>cat foo.txt</code> - print out the contents of the file called <code>foo.txt</code> in the current working directory (works best if it is text)</li>
+<li><code>cp foo.txt bar.txt</code> - copy the file <code>foo.txt</code> to <code>bar.txt</code></li>
+<li><code>mv foo.txt bar.txt</code> - move the file <code>foot.txt</code> to <code>bar.txt</code> (rename it, essentially)</li>
+<li><code>chmod +x foo</code> - make <code>foo</code> executable for all users (common when writing a script)</li>
+</ul>
+<h3 id="command-completion">Command Completion</h3>
+<p>It might occur to you that typing all these commands would get tedious pretty quickly. For this reason, most shells support command completion. For example, type <code>cd</code> (note the space) and then press the “Tab” key on your keyboard, you should see a list of all available directories within the current working directory. Type the first couple characters of one of them and then hit “Tab” again, the directory name should either complete automatically (if it is unambiguous) or you should see a shorter list of possible directories, those that start with what you have typed. This same pattern works for commands themselves, many command line options and flags, and many arguments to various commands.</p>
+<h3 id="system-information">System Information</h3>
+<p>We can also use commands to find information about our computers. For example, the <code>ps</code> command lists processes (programs) running on your computer. There are numerous options to control which programs are shown. One example is <code>ps -e</code>, which displays all processes current running on the machine.</p>
+<p>Another fun command is <code>free -m</code> which shows information about your computer’s memory (RAM). The <code>-m</code> flag tells the program to display memory in megabytes, which is easier to read than the default bytes. Try running <code>free</code> by itself to see the difference.</p>
+<p>Last, try <code>df -h</code>. This command provides information about the amount of space available on your disk drives. The <code>-h</code> option instructs the command to present the information in a human-readable format (a little like <code>-m</code> above).</p>
+<h2 id="advanced-command-line-usage">Advanced Command Line Usage</h2>
+<h3 id="searching-and-finding">Searching and Finding</h3>
+<p>Finding specific files can be challenging for beginners. There are two tools that can help you with this: <code>grep</code> and <code>find</code>. The first searches for text within one or more files, the second searches for files by name or type (among other things). Some examples will probably be most useful. Let’s assume we have a directory that contains two files, <code>file0.py</code> and <code>file1.py</code>, and a sub-directory, <code>subdir</code>. The sub-directory, in turn, contains two files, <code>subfile0.py</code> and <code>subfile1.py</code>.</p>
+<pre><code>.
+├── file0.py
+├── file1.py
+└── subdir
+    ├── subfile0.py
+    └── subfile1.py</code></pre>
+<p>The files above contain some Python code:</p>
+<pre><code>$ cat file0.py 
+def foo():
+    print(&#39;foo&#39;)
+
+$ cat file1.py 
+def bar():
+    print(&#39;bar&#39;)
+
+$ cat subdir/subfile0.py 
+def foo():
+    print(&#39;sub foo&#39;)
+
+$ cat subdir/subfile1.py 
+def bar():
+    print(&#39;sub bar&#39;)</code></pre>
+<p>What if we want to find all the files that contain “foo”? We can use “grep”:</p>
+<pre><code>$ grep -r foo .
+./file0.py:def foo():
+./file0.py:    print(&#39;foo&#39;)
+./subdir/subfile0.py:def foo():
+./subdir/subfile0.py:    print(&#39;sub foo&#39;)</code></pre>
+<p>The <code>-r</code> flag tells grep to search recursively, which causes it to descend into the sub-directory <code>subdir</code>. The general form for this command is <code>grep TARGET LOCATIONS</code> to search for the string given by TARGET in the files or directories given by LOCATIONS. We can also include the <code>-n</code> flag to include the line number of each match in the output:</p>
+<pre><code>$ grep -rn foo .
+./file0.py:1:def foo():
+./file0.py:2:    print(&#39;foo&#39;)
+./subdir/subfile0.py:1:def foo():
+./subdir/subfile0.py:2:    print(&#39;sub foo&#39;)</code></pre>
+<p>Next, what if we want to search by filename? This is where the <code>find</code> command comes in handy. I don’t use this one very often, personally, and I always forget how it works. I suggest making yourself a cheat sheet of commands you forget, or searching online for a comprehensive one.</p>
+<pre><code>$ find . -name &#39;sub*&#39;
+./subdir
+./subdir/subfile0.py
+./subdir/subfile1.py</code></pre>
+<p>Let’s break this down a bit. First, note that <code>grep</code> took the search term first, then the locations to look in. This one is the other way around, the location to look in comes first (“.”), and the search terms come next. In this case I’m looking for any file (or directory, directories are just weird files) with a name that matches a particular pattern. In this case the pattern is “sub” followed by anything else. I have to surround the search expression with single quotes to prevent the shell from interpreting the "*" character. Always use single quotes with find and you won’t have to worry about it. But what if we wanted only files, not directories?</p>
+<pre><code>$ find . -name &#39;sub*&#39; -type f
+./subdir/subfile0.py
+./subdir/subfile1.py</code></pre>
+<p>We can use the <code>-type</code> filter to find only regular files (which is what the <code>f</code> stands for). We could replace the <code>f</code> with a <code>d</code> to find only directories.</p>
+<h3 id="pipes-and-redirection">Pipes and Redirection</h3>
+<p>One of the most powerful features of the Unix / Linux command line interface is the ability to compose small commands into larger functions. This idea is part of what is generally referred to as the Unix Philosophy. Two features present in most shells support this kind of composition. The first is pipes. A pipe is basically just the ability to feed the output of one command directly into the input of another command. A simple and useful example is using the <code>grep</code> command to filter the results of the <code>ls</code> command. This ends up being similar to the behavior of the <code>find</code> command, and I do this sometimes when I can’t remember how to use <code>find</code> off the top of my head:</p>
+<pre><code>$ ls | grep usb
+usb_modeswitch.conf
+usb_modeswitch.d</code></pre>
+<p>I hopped over to the <code>/etc/</code> directory because it’s got a lot of files in it. Running “ls” results in 243 files and directories. What if I wanted to find out which ones have the string “usb” in their names? This is what I did above. The “|” character (which is pronounced “pipe”, conveniently) instructs the shell to take the output of the command on the left and feed it into the command on the right as its input. Notice that I didn’t give <code>grep</code> any locations to search, that’s because it will automatically search through whatever text it receives through the pipe.</p>
+<p>Let’s look at another example. How did I know how many files and directories were in the <code>/etc/</code> directory? I’m sure there are dozens of ways to discover this information, but the easiest, in my opinion, is to pipe the output of <code>ls</code> through a program called <code>wc</code> (word count) which can count characters, words, and lines in text. The output of <code>ls</code> is passed through the pipe one file per line, so by counting the lines we can determine how many files there are:</p>
+<pre><code>$ ls | wc -l
+243</code></pre>
+<p>The <code>-l</code> flag on the <code>wc</code> command tells it to provide only a line count. This pattern is available for many, many commands. I suggest seeing if you can come up with your own combinations. Also note that you can use more than one pipe in one command. For example, there is a silly program installed on many systems called <code>cowsay</code> that draws a little cow on the screen and makes it “say” (with a word bubble) whatever was piped into the command. So the command below actually uses two pipes, one to get the line count (same as above) and one to send the resulting output to <code>cowsay</code>:</p>
+<pre><code>$ ls | wc -l | cowsay
+ _____
+&lt; 243 &gt;
+ -----
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||</code></pre>
+<h2 id="version-control-with-git">Version Control With Git</h2>
+<p>I’m not going to go into much detail here because there are hundreds of good Git tutorials online. Instead, I’m going to try to explain why we would want to use a version control system and link to a couple good tutorials.</p>
+<h3 id="why-use-version-control">Why Use Version Control</h3>
+<p>For better or worse, programming is an experimental process. We change our code, then we try to verify that it works (and possibly validate that it is what the customer wants). This process is difficult to get right and, at its core, this is why we use version control. Version control lets us manage changes to our source code (which is particularly useful when we work in large teams), and it gives us a way to undo what we’ve done when we inevitably mess up.</p>
+<p>Version control gives us a way to organize and manage changes to our code. The most naive way to share code might be to email “versions” back and forth. Many people do this with Word documents in school. Have you ever seen someone name files using a pattern like “report1.docx”, “report2.docx”, “report final.docx”, “report_final2.docx”, and so on? This gets confusing pretty quickly. It is even worse when multiple people are involved. How do I know if “report2.docx” is the one I created, or the one you created and emailed to me?</p>
+<p>Naive versioning schemes like this one also make it very difficult to merge two versions of a document. If you and I both modify the same line of text, how do we combine them? Should we keep both my version and your version, or should we choose one? What if I miss one of your changes while merging them into my copy of the document, will the combined document still make sense? Version control systems help us solve this problem.</p>
+<p>Git and other version control systems track versions of our source code and allow us to combine versions automatically. If there are differences between versions that can’t be combined automatically they are clearly labeled so that we don’t miss any changes and we can combine them ourselves.</p>
+<p>Version control also allows us to revert our changes easily and without losing track of what we had added since the version we revert to. Have you ever changed a bunch of code and then realized that your changes didn’t make as much sense as you thought they would when you started? It’s annoying. In the professional world it can also cost money if your customers run into bugs you didn’t notice until too late.</p>
+<p>The ability to revert our code to some past state can help in both these cases and version control systems are what allow us to revert in an orderly manner.</p>
+<h3 id="tutorials-and-resources">Tutorials and Resources</h3>
+<ul>
+<li>https://blog.udemy.com/git-tutorial-a-comprehensive-guide/ - a detailed guide, all in one page. Useful as a reference as well.</li>
+<li>https://git-scm.com/book/en/v1/Getting-Started - the official tutorial / book. This one has excellent depth, though you might find yourself skipping certain sections, that’s fine.</li>
+<li>https://www.udacity.com/course/how-to-use-git-and-github–ud775 - a Udacity course that introduces both Git and GitHub.</li>
+<li>https://www.udacity.com/course/version-control-with-git–ud123 - another, more introductory, Udacity course.</li>
+</ul>
+<h2 id="suggested-editors">Suggested Editors</h2>
+<p>I personally use JetBrains IDEs for most languages and projects. They are full-featured, professional quality tools with support for code intelligence, refactoring, and testing. There are free versions for a couple languages, and as a student you can get free academic licenses for the rest. I also use Vim for quick edits and some programming.</p>
+<p>I don’t require that you use what I use, but if you do I’ll be able to help you troubleshoot more easily. That being said, here are some other popular editors:</p>
+<ul>
+<li>https://code.visualstudio.com/ - a powerful editor available for free from Microsoft that runs on Windows, Mac, and Linux.</li>
+<li>https://atom.io/ - a similarly powerful editor available for free from GitHub that runs on all major platforms.</li>
+</ul>
+<p>I do not personally recommend Eclipse because I don’t like it. However, if you are comfortable with it then by all means, use it. The choice of tools is a highly personal one, and it is important to use what you are comfortable and productive with rather than what you think someone else wants you to use for one reason or another. That being said, you should also take the time to try new things occasionally, you never know what you might be missing.</p>
+
+<div id="after">
+    <a href="#">Back to top</a>
+    <div id="after-links">
+        <a href="../.." title="Course Home">Home</a> |
+        <a href="https://github.com/glesica/software-reliability" title="Course GitHub Page">GitHub</a>
+    </div>
+</div>
+</body>
+</html>
