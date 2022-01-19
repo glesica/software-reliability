@@ -362,7 +362,12 @@
 <p>Also notice that our “unit” here is a function, not a class. Unit testing doesn’t prescribe what a unit is, it just means that you are testing a single, independent chunk of your program.</p>
 <h2 id="when-to-unit-test">When to Unit Test</h2>
 <p>But how do we know when to use unit tests and when to stick to functional tests? Unfortunately, that decision is really more of an art than a science. But your goal, which can help guide your decisions, should be to have robust tests. This means that they don’t fail unless there’s an actual problem.</p>
-<p>In the example above, we can change either the <code>Person</code> class or the <code>say_hello</code> function and only the relevant tests will fail.</p>
+<p>In the example above, we can change either the <code>Person</code> class or the <code>say_hello</code> function and only the relevant tests will fail. This is a desirable property as it simplifies future maintenance on code.</p>
+<p>Performance is another consideration. Unit tests are generally expected to run quickly (so that they can be run often), so if a test requires time-consuming setup it should probably be a functional test.</p>
+<h2 id="further-reading">Further Reading</h2>
+<ul>
+<li><a href="https://docs.google.com/presentation/d/1BMIU80of7iG-OX2OtsjuKApYSkkapMwqJD_ZPvIN8hU/edit?usp=sharing">Lecture slides</a></li>
+</ul>
 
 <div id="after">
     <a href="#">Back to top</a>
