@@ -48,7 +48,7 @@ permissions, but there are times when they become important, so they are worth
 understanding, at least at a basic level. You can view permissions for a file
 using the "ls" command (see below) like so:
 
-```
+```output
 $ ls -l
 total 12K
 -rw-r--r-- 1 george george 244 Aug  4 18:50 README.md
@@ -147,7 +147,7 @@ these. Let's try it with the `ls` command: `ls --help` (on my machine, this
 command accepts the latter option). Here's the output (I've truncated it a bit
 since it's so long):
 
-```
+```output
 Usage: ls [OPTION]... [FILE]...
 List information about the FILEs (the current directory by default).
 Sort entries alphabetically if none of -cftuvSUX nor --sort is specified.
@@ -222,7 +222,7 @@ a directory that contains two files, `file0.py` and `file1.py`, and a
 sub-directory, `subdir`. The sub-directory, in turn, contains two files,
 `subfile0.py` and `subfile1.py`.
 
-```
+```output
 .
 ├── file0.py
 ├── file1.py
@@ -233,7 +233,7 @@ sub-directory, `subdir`. The sub-directory, in turn, contains two files,
 
 The files above contain some Python code:
 
-```
+```output
 $ cat file0.py 
 def foo():
     print('foo')
@@ -253,7 +253,7 @@ def bar():
 
 What if we want to find all the files that contain "foo"? We can use "grep":
 
-```
+```output
 $ grep -r foo .
 ./file0.py:def foo():
 ./file0.py:    print('foo')
@@ -267,7 +267,7 @@ LOCATIONS` to search for the string given by TARGET in the files or directories
 given by LOCATIONS. We can also include the `-n` flag to include the line number
 of each match in the output:
 
-```
+```output
 $ grep -rn foo .
 ./file0.py:1:def foo():
 ./file0.py:2:    print('foo')
@@ -280,7 +280,7 @@ comes in handy. I don't use this one very often, personally, and I always forget
 how it works. I suggest making yourself a cheat sheet of commands you forget, or
 searching online for a comprehensive one.
 
-```
+```output
 $ find . -name 'sub*'
 ./subdir
 ./subdir/subfile0.py
@@ -297,7 +297,7 @@ quotes to prevent the shell from interpreting the "*" character. Always use
 single quotes with find and you won't have to worry about it. But what if we
 wanted only files, not directories?
 
-```
+```output
 $ find . -name 'sub*' -type f
 ./subdir/subfile0.py
 ./subdir/subfile1.py
@@ -318,7 +318,7 @@ command to filter the results of the `ls` command. This ends up being similar to
 the behavior of the `find` command, and I do this sometimes when I can't
 remember how to use `find` off the top of my head:
 
-```
+```output
 $ ls | grep usb
 usb_modeswitch.conf
 usb_modeswitch.d
@@ -340,7 +340,7 @@ through a program called `wc` (word count) which can count characters, words,
 and lines in text. The output of `ls` is passed through the pipe one file per
 line, so by counting the lines we can determine how many files there are:
 
-```
+```output
 $ ls | wc -l
 243
 ```
@@ -354,7 +354,7 @@ word bubble) whatever was piped into the command. So the command below actually
 uses two pipes, one to get the line count (same as above) and one to send the
 resulting output to `cowsay`:
 
-```
+```output
 $ ls | wc -l | cowsay
  _____
 < 243 >

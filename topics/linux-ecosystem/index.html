@@ -200,7 +200,7 @@
 <h2 id="permissions">Permissions</h2>
 <p>File permissions, that is, who can access which files, are often confusing for new users of Unix / Linux systems. Historically, consumer Windows systems haven’t had much in the way of file permissions. NTFS (the filesystem used by modern versions of Windows) changed this, but most users still don’t have to worry much about file permissions because Windows includes a feature called User Account Control (UAC) that largely abstracts permissions away from the user.</p>
 <p>Modern Unix and Linux systems also generally allow the user to ignore file permissions, but there are times when they become important, so they are worth understanding, at least at a basic level. You can view permissions for a file using the “ls” command (see below) like so:</p>
-<pre><code>$ ls -l
+<pre class="output"><code>$ ls -l
 total 12K
 -rw-r--r-- 1 george george 244 Aug  4 18:50 README.md
 -rw-r--r-- 1 george george 344 Aug  4 19:24 tags
@@ -225,7 +225,7 @@ total 12K
 <p>Using our shell we can manipulate files and directories. Type <code>pwd</code> (which stands for “print working directory”) and press the Enter key. This is an example of a “command” (hence “command line”). This will print the path to the current directory, called the “working directory”.</p>
 <p>Next, it would be helpful to see a list of files and directories inside of the current directory. To do this, use the <code>ls</code> (short for <code>list</code>) command. If you’d like to see more detail about the contents of the current directory, try <code>ls -l</code>. The <code>-l</code> is called a <code>flag</code> or an <code>option</code>. These are used to change the behavior of commands and they vary from command to command.</p>
 <p>If you need to know which options are available for a given command, you can generally use the <code>-h</code> or <code>--help</code> options to find out, most commands support these. Let’s try it with the <code>ls</code> command: <code>ls --help</code> (on my machine, this command accepts the latter option). Here’s the output (I’ve truncated it a bit since it’s so long):</p>
-<pre><code>Usage: ls [OPTION]... [FILE]...
+<pre class="output"><code>Usage: ls [OPTION]... [FILE]...
 List information about the FILEs (the current directory by default).
 Sort entries alphabetically if none of -cftuvSUX nor --sort is specified.
 
@@ -256,14 +256,14 @@ Mandatory arguments to long options are mandatory for short options too.
 <h2 id="advanced-command-line-usage">Advanced Command Line Usage</h2>
 <h3 id="searching-and-finding">Searching and Finding</h3>
 <p>Finding specific files can be challenging for beginners. There are two tools that can help you with this: <code>grep</code> and <code>find</code>. The first searches for text within one or more files, the second searches for files by name or type (among other things). Some examples will probably be most useful. Let’s assume we have a directory that contains two files, <code>file0.py</code> and <code>file1.py</code>, and a sub-directory, <code>subdir</code>. The sub-directory, in turn, contains two files, <code>subfile0.py</code> and <code>subfile1.py</code>.</p>
-<pre><code>.
+<pre class="output"><code>.
 ├── file0.py
 ├── file1.py
 └── subdir
     ├── subfile0.py
     └── subfile1.py</code></pre>
 <p>The files above contain some Python code:</p>
-<pre><code>$ cat file0.py 
+<pre class="output"><code>$ cat file0.py 
 def foo():
     print(&#39;foo&#39;)
 
@@ -279,38 +279,38 @@ $ cat subdir/subfile1.py
 def bar():
     print(&#39;sub bar&#39;)</code></pre>
 <p>What if we want to find all the files that contain “foo”? We can use “grep”:</p>
-<pre><code>$ grep -r foo .
+<pre class="output"><code>$ grep -r foo .
 ./file0.py:def foo():
 ./file0.py:    print(&#39;foo&#39;)
 ./subdir/subfile0.py:def foo():
 ./subdir/subfile0.py:    print(&#39;sub foo&#39;)</code></pre>
 <p>The <code>-r</code> flag tells grep to search recursively, which causes it to descend into the sub-directory <code>subdir</code>. The general form for this command is <code>grep TARGET LOCATIONS</code> to search for the string given by TARGET in the files or directories given by LOCATIONS. We can also include the <code>-n</code> flag to include the line number of each match in the output:</p>
-<pre><code>$ grep -rn foo .
+<pre class="output"><code>$ grep -rn foo .
 ./file0.py:1:def foo():
 ./file0.py:2:    print(&#39;foo&#39;)
 ./subdir/subfile0.py:1:def foo():
 ./subdir/subfile0.py:2:    print(&#39;sub foo&#39;)</code></pre>
 <p>Next, what if we want to search by filename? This is where the <code>find</code> command comes in handy. I don’t use this one very often, personally, and I always forget how it works. I suggest making yourself a cheat sheet of commands you forget, or searching online for a comprehensive one.</p>
-<pre><code>$ find . -name &#39;sub*&#39;
+<pre class="output"><code>$ find . -name &#39;sub*&#39;
 ./subdir
 ./subdir/subfile0.py
 ./subdir/subfile1.py</code></pre>
 <p>Let’s break this down a bit. First, note that <code>grep</code> took the search term first, then the locations to look in. This one is the other way around, the location to look in comes first (“.”), and the search terms come next. In this case I’m looking for any file (or directory, directories are just weird files) with a name that matches a particular pattern. In this case the pattern is “sub” followed by anything else. I have to surround the search expression with single quotes to prevent the shell from interpreting the "*" character. Always use single quotes with find and you won’t have to worry about it. But what if we wanted only files, not directories?</p>
-<pre><code>$ find . -name &#39;sub*&#39; -type f
+<pre class="output"><code>$ find . -name &#39;sub*&#39; -type f
 ./subdir/subfile0.py
 ./subdir/subfile1.py</code></pre>
 <p>We can use the <code>-type</code> filter to find only regular files (which is what the <code>f</code> stands for). We could replace the <code>f</code> with a <code>d</code> to find only directories.</p>
 <h3 id="pipes-and-redirection">Pipes and Redirection</h3>
 <p>One of the most powerful features of the Unix / Linux command line interface is the ability to compose small commands into larger functions. This idea is part of what is generally referred to as the Unix Philosophy. Two features present in most shells support this kind of composition. The first is pipes. A pipe is basically just the ability to feed the output of one command directly into the input of another command. A simple and useful example is using the <code>grep</code> command to filter the results of the <code>ls</code> command. This ends up being similar to the behavior of the <code>find</code> command, and I do this sometimes when I can’t remember how to use <code>find</code> off the top of my head:</p>
-<pre><code>$ ls | grep usb
+<pre class="output"><code>$ ls | grep usb
 usb_modeswitch.conf
 usb_modeswitch.d</code></pre>
 <p>I hopped over to the <code>/etc/</code> directory because it’s got a lot of files in it. Running “ls” results in 243 files and directories. What if I wanted to find out which ones have the string “usb” in their names? This is what I did above. The “|” character (which is pronounced “pipe”, conveniently) instructs the shell to take the output of the command on the left and feed it into the command on the right as its input. Notice that I didn’t give <code>grep</code> any locations to search, that’s because it will automatically search through whatever text it receives through the pipe.</p>
 <p>Let’s look at another example. How did I know how many files and directories were in the <code>/etc/</code> directory? I’m sure there are dozens of ways to discover this information, but the easiest, in my opinion, is to pipe the output of <code>ls</code> through a program called <code>wc</code> (word count) which can count characters, words, and lines in text. The output of <code>ls</code> is passed through the pipe one file per line, so by counting the lines we can determine how many files there are:</p>
-<pre><code>$ ls | wc -l
+<pre class="output"><code>$ ls | wc -l
 243</code></pre>
 <p>The <code>-l</code> flag on the <code>wc</code> command tells it to provide only a line count. This pattern is available for many, many commands. I suggest seeing if you can come up with your own combinations. Also note that you can use more than one pipe in one command. For example, there is a silly program installed on many systems called <code>cowsay</code> that draws a little cow on the screen and makes it “say” (with a word bubble) whatever was piped into the command. So the command below actually uses two pipes, one to get the line count (same as above) and one to send the resulting output to <code>cowsay</code>:</p>
-<pre><code>$ ls | wc -l | cowsay
+<pre class="output"><code>$ ls | wc -l | cowsay
  _____
 &lt; 243 &gt;
  -----
