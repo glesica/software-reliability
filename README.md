@@ -8,8 +8,6 @@ techniques, and practices commonly used to produce more reliable software.
 ## Shortcuts
 
   * [Assignments](assignments/)
-  * [Lecture videos](videos/)
-  * [Office hours](office-hours.html)
   * [Topics](topics/)
 
 ## Schedule
@@ -25,6 +23,8 @@ move through the material.
 
 Lectures will be delivered in-person. If you need accomodation due to the
 Covid-19 pandemic, please reach out as soon as possible.
+
+## Office Hours
 
 Office hours will be held in an on-demand fashion, either in-person or
 virtually. Please use [Calendly](https://calendly.com/glesica) to schedule an
