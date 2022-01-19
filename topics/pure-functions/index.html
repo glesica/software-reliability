@@ -255,6 +255,9 @@
 </div>
 <h1 id="pure-functions">Pure Functions</h1>
 <p>We’ve probably all heard that functions are black boxes that take inputs and produce outputs. And you’ve probably seen a diagram like the one below before. But what does it mean for a function to be “pure” and how do pure functions help us test our code?</p>
+<figure>
+<img src="function.png" alt="Pure Function" /><figcaption aria-hidden="true">Pure Function</figcaption>
+</figure>
 <p>A pure function is one that takes inputs and produces outputs, as illustrated above and, furthermore, has no “side effects” and no dependencies on any state outside of the function inputs. A side effect is any modification of the “world” outside the function itself. For example, the function below prints to the screen, which is a side effect:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add(a, b):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  c <span class="op">=</span> a <span class="op">+</span> b</span>

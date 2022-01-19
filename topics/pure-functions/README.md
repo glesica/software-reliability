@@ -5,6 +5,8 @@ produce outputs. And you've probably seen a diagram like the one below before.
 But what does it mean for a function to be "pure" and how do pure functions help
 us test our code?
 
+![Pure Function](function.png)
+
 A pure function is one that takes inputs and produces outputs, as illustrated
 above and, furthermore, has no "side effects" and no dependencies on any state
 outside of the function inputs. A side effect is any modification of the "world"
