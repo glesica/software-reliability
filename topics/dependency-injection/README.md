@@ -68,7 +68,7 @@ perhaps depending on its content.
 
 ## Advanced Example
 
-TODO
+We will work through a more advanced example in class.
 
 ## DI Frameworks
 
@@ -76,6 +76,7 @@ TODO
 
 ## Further Reading
 
-  * https://www.youtube.com/watch?v=IKD2-MAkXyQ
-  * https://stackoverflow.com/questions/130794/what-is-dependency-injection
-  * https://en.wikipedia.org/wiki/Dependency_injection
+  * <https://www.youtube.com/watch?v=IKD2-MAkXyQ>
+  * <https://stackoverflow.com/questions/130794/what-is-dependency-injection>
+  * <https://en.wikipedia.org/wiki/Dependency_injection>
+

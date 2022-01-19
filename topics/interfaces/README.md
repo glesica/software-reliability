@@ -108,6 +108,6 @@ them, but without having to connect to a chat server or use a real chat room.
 
 ## Further Reading
 
-  * https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/interfaces/
-  * https://www.codeproject.com/Articles/702246/Program-to-Interface-not-Implementation-Beginners
+  * <https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/interfaces/>
+  * <https://www.codeproject.com/Articles/702246/Program-to-Interface-not-Implementation-Beginners>
 
