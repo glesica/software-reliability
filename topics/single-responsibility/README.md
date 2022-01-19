@@ -16,6 +16,6 @@ work they tend to continue to work, which is really our ultimate goal.
 
 ## Further Reading
 
-  * https://en.wikipedia.org/wiki/Single_responsibility_principle
-  * https://en.wikipedia.org/wiki/Cohesion_(computer_science)
+  * <https://en.wikipedia.org/wiki/Single_responsibility_principle>
+  * <https://en.wikipedia.org/wiki/Cohesion_(computer_science)>
 
