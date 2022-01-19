@@ -11,9 +11,10 @@ easily.
 
 ## Languages
 
-We will use a variety of programming languages in this course.
-
-TODO
+We will use a variety of programming languages in this course. For the most part
+we're going to keep it simple and stick to Python wherever possible. However,
+there are a number of topics that lend themselves to other languages, so we'll
+use whatever makes sense in those cases.
 
 ### C
 
@@ -107,3 +108,4 @@ system for conducting code reviews.
 
 Students will need a GitHub account and we will go over certain GitHub features
 in class.
+
