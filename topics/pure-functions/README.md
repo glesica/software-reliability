@@ -75,6 +75,7 @@ pure and impure functions.
 
 ## Further Reading
 
-  * https://interactivepython.org/courselib/static/thinkcspy/Lists/PureFunctions.html
-  * https://en.wikipedia.org/wiki/Pure_function
+  *
+  <https://interactivepython.org/courselib/static/thinkcspy/Lists/PureFunctions.html>
+  * <https://en.wikipedia.org/wiki/Pure_function>
 
