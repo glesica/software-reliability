@@ -18,14 +18,16 @@ The [topics/](topics/) directory contains the materials we will cover. Keep in
 mind that many topics will build on one another. This means that you really
 don't want to fall behind. If you miss a week, be sure to catch up.
 
+There are no dates assigned to topics because I'm not sure how quickly we will
+move through the material.
+
 ## Instruction
 
-Lectures will be delivered in-person, but they will also be livestreamed and
-recorded as an accomodation due to the Covid-19 pandemic. See Moodle for the
-Zoom link. Recordings will be posted here.
+Lectures will be delivered in-person. If you need accomodation due to the
+Covid-19 pandemic, please reach out as soon as possible.
 
-[Office hours](office-hours.html) will be held virtually in an on-demand
-fashion. Please use [Calendly](https://calendly.com/glesica) to schedule an
+Office hours will be held in an on-demand fashion, either in-person or
+virtually. Please use [Calendly](https://calendly.com/glesica) to schedule an
 office hours appointment.
 
 If you need help with an assignment, it is generally a good idea to include
@@ -42,11 +44,6 @@ tar czf the_dir.tgz the_dir
 
 After you've done this, you can attach `the_dir.tgz` to an email.
 
-### Lecture Videos
-
-Lecture videos are available on YouTube, the list is on the [videos/](videos/)
-page.
-
 ## Assignments
 
 Due dates are going to be a pretty relaxed affair. You'll lose a point for every
@@ -61,24 +58,15 @@ There isn't a textbook, but there are a couple books that students might find
 informative. These are listed below. This list will likely be updated as the
 semester progresses.
 
-  - [Classic Shell Scripting](https://www.oreilly.com/library/view/classic-shell-scripting/0596005954/)
-  - [A Philosophy of Software Design](https://www.goodreads.com/book/show/39996759-a-philosophy-of-software-design)
+  * [A Friendly Introduction to Software
+    Testing](https://github.com/laboon/ebook)
+  * [A Philosophy of Software Design](https://www.goodreads.com/book/show/39996759-a-philosophy-of-software-design)
 
 ## Guest Speakers
 
 We will have a number of [guest speakers](guests.html) throughout the semester.
 Each will discuss a topic related to the course on which they have significant
 personal experience.
-
-## Prerequisites
-
-### Linux on Windows
-
-It is possible to install a Linux distribution under Windows 10 using WSL
-(Windows Subsystem for Linux). This will be required for some of the topics we
-study during this course. See the link below for instructions.
-
-  - <https://docs.microsoft.com/en-us/windows/wsl/install-win10>
 
 ## Grading
 
