@@ -11,7 +11,7 @@ outside of the function inputs. A side effect is any modification of the "world"
 outside the function itself. For example, the function below prints to the
 screen, which is a side effect:
 
-```python3
+```python
 def add(a, b):
   c = a + b
   print(c)
@@ -22,7 +22,7 @@ So even though this function also returns a value, it is not a "pure" function.
 Another example of a side effect is modifying external state, such as the state
 of a class instance:
 
-```python3
+```python
 class Greeter:
   def __init__(self):
     self.greeting = 'hello'
@@ -48,7 +48,7 @@ setGreeting added to the string, or transformed it in some other way, we'd also
 need to make sure that we started out with the correct value in the greeting
 attribute before running the test. Consider the following class:
 
-```python3
+```python
 class Adder:
   def __init__(self):
     self.sum = 0
@@ -65,7 +65,7 @@ need to remember to reset it to our preferred start value. If we used a pure
 function instead our test would be much simpler to think about, and probably a
 bit simpler to write as well:
 
-```python3
+```python
 def adder(sum, addend):
   return sum + addend
 ```
