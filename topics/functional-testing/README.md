@@ -110,7 +110,39 @@ widely used to test web applications using the Chrome or Chromium web browsers.
 
 #### Commander
 
+There are a number of ways to test command line applications. The simplest way
+is just to capture the output by redirecting it to a file and compare that file
+to a known "good" output. This style of testing is commonly known as "gold file"
+testing, the known good output is the "gold" file.
 
+This style of testing has drawbacks, though. Gold file tests can be brittle;
+small changes to the program can still cause an entire gold file test to fail.
+Additionally, the gold files themselves can be cumbersome to create and update.
+
+We can also test program output in smaller chunks. We can do this manually, of
+course, but it's easier if we use a tool to make it easier.
+
+As an example, we will create a couple tests for a command line utility included
+by default on most systems using
+[Commander](https://github.com/commander-cli/commander), a handy tool for
+testing command line applications. There is a trivial example below.
+
+```output
+tests:
+  echo hello world:
+    stdout: hello world
+    exit-code: 0
+```
+
+We can run this with the following command, assuming the file above is saved as
+`echo_test.yaml`:
+
+```output
+commander test echo_test.yaml
+```
+
+Check out the [example](commander/) we will use in class, complete with a Docker
+image.
 
 #### Puppeteer
 
@@ -129,12 +161,7 @@ These will include performance testing and various forms of security analysis.
 
 
 Command Line
-There are a number of ways to test command line applications. The simplest way is just to capture the output by redirecting it to a file and compare that file to a known "good" output. This style of testing is commonly known as "gold file" testing, the known good output is the "gold" file. This style of testing has drawbacks, though. Gold file tests can be brittle; small changes to the program can still cause an entire gold file test to fail. Additionally, the gold files themselves can be cumbersome to create and update.
-We can also test program output in smaller chunks. We can do this manually, of course, but it's easier if we use a tool to make it easier. Let's take a look at how we might handle this manually and then we'll try a purpose-built tool.
-Manual Testing Example
-As an example, we will create a couple tests for a command line utility included by default on most systems.
-BATS (Bash Automated Test System) Example
-BATS is a tool for specifying and running tests on command line applications.
+
 Web Browser
 We can also functionally test web applications. Gold file tests are possible using images or raw HTML, but we can also automate the web browser itself in order to create more advanced tests that interact with and verify properties of individual HTML elements.
 Puppeteer Examples
