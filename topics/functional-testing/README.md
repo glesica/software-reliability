@@ -146,26 +146,25 @@ image.
 
 #### Puppeteer
 
+We can also functionally test web applications. Gold file tests are possible
+using images or raw HTML, but we can also automate the web browser itself in
+order to create more advanced tests that interact with and verify properties of
+individual HTML elements.
 
+Puppeteer is a tool for automating a web browser. It is relatively recent and
+relies on a protocol that is currently only implemented in Google Chrome, but
+support is planned for other web browsers. As its name implies, Puppeteer allows
+us to interact with a web browser using code that can be assembled into scripts
+for repeatability.
+
+We will use Puppeteer to verify some characteristics of some popular web sites
+as though we were developers testing them. Puppeteer is distributed as a
+JavaScript library and it can be installed using NPM.
+
+Check out the [example](puppeteer/) we will go over in class.
 
 ## Non-functional Testing
 
 We will discuss various forms of non-functional testing later in the semester.
 These will include performance testing and various forms of security analysis.
 
-
-
-
-
-
-
-
-Command Line
-
-Web Browser
-We can also functionally test web applications. Gold file tests are possible using images or raw HTML, but we can also automate the web browser itself in order to create more advanced tests that interact with and verify properties of individual HTML elements.
-Puppeteer Examples
-Puppeteer is a tool for automating a web browser. It is relatively recent and relies on a protocol that is currently only implemented in Google Chrome, but support is planned for all three major web browsers. As its name implies, Puppeteer allows us to interact with a web browser using code that can be assembled into scripts for repeatability.
-We will use Puppeteer to verify some characteristics of some popular web sites as though we were developers testing them. Puppeteer is distributed as a JavaScript library and it can be installed using NPM.
-You can find examples that use Puppeteer here:
-https://github.com/um-software-testing/reddit-puppeteer
