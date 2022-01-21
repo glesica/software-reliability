@@ -168,3 +168,7 @@ Check out the [example](puppeteer/) we will go over in class.
 We will discuss various forms of non-functional testing later in the semester.
 These will include performance testing and various forms of security analysis.
 
+## Further Reading
+
+  * [Lecture slides](https://docs.google.com/presentation/d/12LGeNfkJE4bOBOQ_nbiXNn1YIEzWWJRgMeCUFL0utHM/edit#slide=id.p)
+
