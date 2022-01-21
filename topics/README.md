@@ -9,14 +9,12 @@ own directory, which also contains any supplementary files or other resources.
      1. [Languages and Tools](languages-tools/)
      1. [Docker](docker/)
   1. Dynamic Analysis
-     1. [Functional Testing](functional-testing)
-     1. [Integration Testing](integration-testing)
-     1. [Unit Testing](unit-testing)
-     1. [Choosing Test Values](choosing-test-values)
+     1. [Functional Testing](functional-testing/)
+     1. [Unit Testing](unit-testing/)
+     1. [Choosing Test Values](choosing-test-values/)
+     1. [Code Coverage](code-coverage/)
      1. [Fuzz Testing](fuzz-testing/)
-     1. Property-based Testing
-     1. Testing Stochastic Code
-     1. Code Coverage
+     1. [Integration Testing](integration-testing/)
   1. Static Analysis
      1. [Code Complexity](code-complexity/)
      1. [Linters and Formatters](linters-and-formatters/)

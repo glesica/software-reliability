@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>/topics/dependency-injection [software reliability]</title>
+  <title>/topics/code-coverage [software reliability]</title>
   <style>
     html {
       line-height: 1.5;
@@ -253,47 +253,38 @@
         <a href="https://github.com/glesica/software-reliability" title="Course GitHub Page">GitHub</a>
     </div>
 </div>
-<h1 id="dependency-injection">Dependency Injection</h1>
+<h1 id="code-coverage">Code Coverage</h1>
+<p>Code coverage is, put simply, a measure of how much of the code that makes up an application is actively tested. In other words, how much of the code actually executes when the tests are run.</p>
+<p>When we talk about measuring “code coverage” we are interested in knowing what fraction of our code is actually tested by our test suite. For example, let’s consider the following code:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_greeting(name):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> name <span class="op">==</span> <span class="st">&#39;George&#39;</span>:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&#39;Oh, hi there!&#39;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>:</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&#39;Nice to meet you&#39;</span></span></code></pre></div>
+<p>Now, imagine we were to write some unit tests for this simple function.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> hello</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> say_hello(<span class="st">&#39;Megan&#39;</span>) <span class="op">==</span> <span class="st">&#39;Nice to meet you&#39;</span></span></code></pre></div>
+<p>This is fine, the test calls the function and verifies the output. But the test doesn’t cause every line in the function under test to be run. Specifically, we never hit the <code>true</code> branch of the if-statement. So out of five lines, our test executes four, making our code coverage 80%. This is a very simple example, but the idea should be clear.</p>
+<h2 id="types-of-coverage">Types of Coverage</h2>
+<p>There are several ways to measure coverage. Above I demonstrated “line” coverage, in other words, measuring coverage as a percentage of the total lines in the program exercised by tests.</p>
+<p>Another common metric is “branch coverage”. Branch coverage essentially counts the number of “paths” through the program that are covered. At each point where a decision is made (if-statements, switch-statements, and so on) it counts how many of the possibilities are run by the test suite, and how many are not. The code coverage then becomes the fraction of covered paths. In the example above, the branch coverage would be 50%.</p>
+<p>It is also somewhat common to count the percentage of functions or classes covered by a test suite.</p>
+<h2 id="chasing-100-coverage">Chasing 100% Coverage</h2>
+<p>Coverage is a somewhat controversial concept. It is commonly misused, usually because people misunderstand it.</p>
+<p>One of the traps that developers and organizations sometimes fall into is “chasing” 100% code coverage. It seems strange to think that we might not want 100% coverage, why wouldn’t we? Clearly our test suite above would have been improved by adding another test that passed “George” as the name, right? Maybe not. We have to consider the cost of that additional test, and this isn’t always simple to do. There are several costs we have to consider here:</p>
 <ul>
-<li><a href="assignment/">Homework</a></li>
+<li>direct cost of developer time</li>
+<li>opportunity cost of developer time</li>
+<li>long-term maintenance cost</li>
 </ul>
-<p>When a function or class requires access to another function or class instance in order to do its work, we say that the latter is a “dependency” of the former. For example, the function below depends on the <code>print</code> function.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> send_message(message):</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">&quot;Message: &quot;</span> <span class="op">+</span> message)</span></code></pre></div>
-<p>This might seem like an unusual way to think about our code. Why does it matter what we depend on? Considering our dependencies explicitly has a couple potential benefits, but the most notable is probably that it can simplify automated testing.</p>
-<p>Let’s say you wanted to test the function above. You could read from stdout to make sure your message got printed, but that’s clunky (and if this were a network request or a database query, perhaps quite unreasonable).</p>
-<p>Instead, we can allow a print function (which is really just any function that accepts a string, in this case) to be “injected”. Within our <code>send_message</code> function, then, any time we want to print something, we use the injected print function instead of the built-in version.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> send_message(message, print_func):</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  print_func(<span class="st">&quot;Message: &quot;</span> <span class="op">+</span> message)</span></code></pre></div>
-<p>If we wanted to get fancy we could give <code>print_func</code> a default value, perhaps setting it to the standard print function by default.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> send_message(message, print_func<span class="op">=</span><span class="bu">print</span>):</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  print_func(<span class="st">&quot;Message: &quot;</span> <span class="op">+</span> message)</span></code></pre></div>
-<p>Now, in our test we can give it a function that stores whatever arguments it is called with so that we can verify that they are correct without having to mess around with stdout.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MessageTrap:</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">__init__</span>():</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.messages <span class="op">=</span> []</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">__call__</span>(<span class="va">self</span>, message):</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.messages.add(message)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_send_message():</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  trap <span class="op">=</span> MessageTrap()</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  send_message(<span class="st">&quot;hello there&quot;</span>, trap)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">assert</span> <span class="bu">len</span>(trap.messages) <span class="op">==</span> <span class="dv">1</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">assert</span> <span class="st">&quot;hello there&quot;</span> <span class="kw">in</span> trap.messages[<span class="dv">0</span>]</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># verify trap.messages</span></span></code></pre></div>
-<p>There are other benefits to treating the print function as a dependency as well. For instance, we might want to wrap or format the output in some way, depending on who is running the program and in what environment. This is a common use-case for message logging, where we want to include things like the date and time of a message alongside the content of the message. We might also want to publish the message to some kind of network service or even send the message over email, perhaps depending on its content.</p>
-<h2 id="stochastic-code">Stochastic Code</h2>
-<p>One use-case for dependency injection is to make stochastic, or random, code easier to test. When a function involves a random number, it is, by design, impossible to know with certainty what its output will be for a given set up inputs. One way around this is to allow the random number generator (RNG) to be injected. This way, it can be replaced with a predictable equivalent for tests.</p>
-<h2 id="advanced-example">Advanced Example</h2>
-<p>We will work through a more advanced example in class.</p>
-<h2 id="di-frameworks">DI Frameworks</h2>
-<p>While dependency injection is just a pattern, there are a number of libraries in existence that attempt to make it easier to implement. The <a href="https://spring.io">Spring</a> framework for Java is one of the most well-known examples.</p>
+<p>The first is pretty simple, if the developer earns some amount of money <code>N</code> per hour, and a test took <code>M</code> hours to write then the test cost <code>N * M</code>. If we know about how much a test will cost, we need to ask ourselves (preferably before we write it) how much it is worth. A test that verifies extremely simple code may not be worth very much, and we should be cognizant of this fact.</p>
+<p>The second cost listed above might sound familiar if you’ve taken an economics course. The idea behind “opportunity cost” is that if you choose to do a thing you give up the opportunity to do something else, at least during the time you spend doing the thing you chose to do.</p>
+<p>So, as a developer, if I choose to add another test for a section of code I am giving up the opportunity to spend that time adding an additional feature to my software, or adding a test to another section of code, etc. So, again, when we consider adding additional tests to try to achieve 100% coverage we need to ask ourselves if doing so is really the most valuable use of our time.</p>
+<p>Finally, direct and opportunity costs don’t end once the code (or test) is written. Software must be maintained, bugs must be fixed, features must be added. Every line of code we add today will continue to incur costs into the future. So when we “chase” 100% coverage we might consider the costs acceptable today, but if we fail to consider the costs we (or our organizations) will pay tomorrow, we may still end up overpaying for test coverage.</p>
 <h2 id="further-reading">Further Reading</h2>
 <ul>
-<li><a href="https://www.youtube.com/watch?v=IKD2-MAkXyQ" class="uri">https://www.youtube.com/watch?v=IKD2-MAkXyQ</a></li>
-<li><a href="https://stackoverflow.com/questions/130794/what-is-dependency-injection" class="uri">https://stackoverflow.com/questions/130794/what-is-dependency-injection</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Dependency_injection" class="uri">https://en.wikipedia.org/wiki/Dependency_injection</a></li>
+<li><a href="https://docs.google.com/presentation/d/1Gn8tg564q0imQb86PV8iMo7hQgMusLK17zgj8De9_m4/edit#slide=id.p">Lecture slides</a></li>
 </ul>
 
 <div id="after">

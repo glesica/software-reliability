@@ -66,13 +66,24 @@ message alongside the content of the message. We might also want to publish the
 message to some kind of network service or even send the message over email,
 perhaps depending on its content.
 
+## Stochastic Code
+
+One use-case for dependency injection is to make stochastic, or random, code
+easier to test. When a function involves a random number, it is, by design,
+impossible to know with certainty what its output will be for a given set up
+inputs. One way around this is to allow the random number generator (RNG) to be
+injected. This way, it can be replaced with a predictable equivalent for tests.
+
 ## Advanced Example
 
 We will work through a more advanced example in class.
 
 ## DI Frameworks
 
-TODO
+While dependency injection is just a pattern, there are a number of
+libraries in existence that attempt to make it easier to implement. The
+[Spring](https://spring.io) framework for Java is one of the most well-known
+examples.
 
 ## Further Reading
 
