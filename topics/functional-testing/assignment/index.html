@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>/assignments [software reliability]</title>
+  <title>/topics/functional-testing/assignment [software reliability]</title>
   <style>
     html {
       line-height: 1.5;
@@ -186,23 +186,32 @@
 <div id="before">
     Software Reliability and Testing
     <div id="before-links">
-        <a href=".." title="Course Home">Home</a> |
+        <a href="../../.." title="Course Home">Home</a> |
         <a href="https://github.com/glesica/software-reliability" title="Course GitHub Page">GitHub</a>
     </div>
 </div>
-<h1 id="assignments">Assignments</h1>
-<p>There will be two kinds of assignments in this course: homeworks and projects. Homeworks are smaller, more structured assignments that will be due each week. Each homework will match up with a single topic and will generally be due at the end of the week during which we discuss that topic. Projects, on the other hand, are much larger and will involve a great deal of self-direction. These will be due periodically throughout the semester and may include material from several topics.</p>
-<h2 id="homeworks">Homeworks</h2>
+<h1 id="functional-testing-homework">Functional Testing Homework</h1>
+<p>There are three components to this assignment, but they will all be submitted as a single assignment. Don’t forget to complete all three!</p>
+<h2 id="manual-functional-testing">1. Manual Functional Testing</h2>
+<p>Write a functional test procedure for three Linux commands chosen from the list below. Your procedure should verify some aspect of the command’s functionality and must clearly specify any assumptions, such as files or directories that must exist.</p>
 <ul>
-<li><a href="../topics/functional-testing/assignment/">Functional Testing</a></li>
-<li><a href="../topics/dependency-injection/assignment/">Dependency Injection</a></li>
+<li><code>cat</code></li>
+<li><code>cd</code></li>
+<li><code>find</code></li>
+<li><code>grep</code></li>
+<li><code>ls</code></li>
+<li><code>sort</code></li>
+<li><code>tr</code></li>
 </ul>
-<h2 id="projects">Projects</h2>
+<h2 id="automated-command-line-testing">2. Automated Command Line Testing</h2>
+<p>Using <a href="https://github.com/commander-cli/commander">Commander</a> (discussed in class), automate the manual tests you created above. All of the commands above are already installed in the container image provided, so you don’t have to worry about installing them.</p>
+<h2 id="automated-browser-testing">3. Automated Browser Testing</h2>
+<p>Choose a website and use Puppeteer to verify three things about it, such as page headers, links, or other content. Your script should resemble the example we discussed in class and you can even borrow the <code>assertEqual</code> function, if you’d like.</p>
 
 <div id="after">
     <a href="#">Back to top</a>
     <div id="after-links">
-        <a href=".." title="Course Home">Home</a> |
+        <a href="../../.." title="Course Home">Home</a> |
         <a href="https://github.com/glesica/software-reliability" title="Course GitHub Page">GitHub</a>
     </div>
 </div>

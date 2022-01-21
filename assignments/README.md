@@ -10,7 +10,8 @@ topics.
 
 ## Homeworks
 
-  * [Dependency Injection](/topics/dependency-injection/assignment/)
+  * [Functional Testing](../topics/functional-testing/assignment/)
+  * [Dependency Injection](../topics/dependency-injection/assignment/)
 
 ## Projects
 
