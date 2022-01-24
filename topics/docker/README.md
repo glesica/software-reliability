@@ -52,7 +52,7 @@ image).
 
 ```dockerfile
 FROM debian:bullseye-slim
-RUN apt-get update && apt-get install cowsay
+RUN apt-get update && apt-get install -y cowsay
 ENV PATH=${PATH}:/usr/games
 ```
 
