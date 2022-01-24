@@ -1,5 +1,7 @@
 # Functional Testing
 
+  * [Assignment](assignment/)
+
 When we sit down to a build a piece of software, how do we know what to build?
 In most cases, we know what to build because we've gathered a set of
 requirements, characteristics our software must have in order to be considered
