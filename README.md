@@ -5,6 +5,9 @@
 A [University of Montana](https://www.umt.edu) course covering tools,
 techniques, and practices commonly used to produce more reliable software.
 
+The Git repository for this website is available here:
+<https://github.com/glesica/software-reliability>.
+
 ## Shortcuts
 
   * [Assignments](assignments/)
