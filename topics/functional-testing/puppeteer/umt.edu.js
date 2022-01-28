@@ -10,6 +10,7 @@ async function clickGlobalMenuItem(page, itemIndex) {
             .querySelector(`nav li:nth-child(${index}) a`);
     }, itemIndex);
     await link.click();
+    await page.waitForNavigation();
 }
 
 async function getPageHeading(page) {
