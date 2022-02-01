@@ -11,7 +11,6 @@ and must clearly specify any assumptions, such as files or directories that must
 exist.
 
   * `cat`
-  * `cd`
   * `find`
   * `grep`
   * `ls`
