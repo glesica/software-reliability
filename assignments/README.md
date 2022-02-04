@@ -11,6 +11,7 @@ topics.
 ## Homeworks
 
   * [Functional Testing](../topics/functional-testing/assignment/)
+  * [Unit Testing](../topics/unit-testing/assignment/)
   * [Dependency Injection](../topics/dependency-injection/assignment/)
 
 ## Projects
