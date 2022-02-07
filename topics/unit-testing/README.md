@@ -190,6 +190,22 @@ Performance is another consideration. Unit tests are generally expected to run
 quickly (so that they can be run often), so if a test requires time-consuming
 setup it should probably be a functional test.
 
+## Pytest
+
+For simplicity, the examples above have used simple assertions. But there are
+better ways to construct unit tests. Many libraries exist for various languages
+that can assist with testing. [Pytest](https://docs.pytest.org/) is a test
+runner, a program that helps to automatically run your unit tests, for Python.
+
+There is a Pytest Docker image defined in this directory
+([Dockerfile](Dockerfile) that can be used to run Pytest on simple Python
+projects (that have no other dependencies). You should be able to use it for
+your homework.
+
+We will go over an example in class and then look at tests in some real-world
+open source software.
+
 ## Further Reading
 
   * [Lecture slides](https://docs.google.com/presentation/d/1BMIU80of7iG-OX2OtsjuKApYSkkapMwqJD_ZPvIN8hU/edit?usp=sharing)
+  * [Pytest](https://docs.pytest.org/)
