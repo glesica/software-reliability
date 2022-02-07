@@ -42,5 +42,5 @@ order to choose groups that will result in robust, useful tests.
 ## Further Reading
 
   * [Lecture slides](https://docs.google.com/presentation/d/1sUZlgu-rgpYVtdkJluwh7oh03NS3hu-ksjTV-mAIQ-8/edit?usp=sharing)
-  * http://web.mit.edu/6.005/www/sp16/classes/03-testing/ - includes an
+  * <http://web.mit.edu/6.005/www/sp16/classes/03-testing/> - includes an
     excellent discussion about how to choose good test values
