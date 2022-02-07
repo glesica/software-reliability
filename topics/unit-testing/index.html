@@ -367,9 +367,14 @@
 <p>But how do we know when to use unit tests and when to stick to functional tests? Unfortunately, that decision is really more of an art than a science. But your goal, which can help guide your decisions, should be to have robust tests. This means that they don’t fail unless there’s an actual problem.</p>
 <p>In the example above, we can change either the <code>Person</code> class or the <code>say_hello</code> function and only the relevant tests will fail. This is a desirable property as it simplifies future maintenance on code.</p>
 <p>Performance is another consideration. Unit tests are generally expected to run quickly (so that they can be run often), so if a test requires time-consuming setup it should probably be a functional test.</p>
+<h2 id="pytest">Pytest</h2>
+<p>For simplicity, the examples above have used simple assertions. But there are better ways to construct unit tests. Many libraries exist for various languages that can assist with testing. <a href="https://docs.pytest.org/">Pytest</a> is a test runner, a program that helps to automatically run your unit tests, for Python.</p>
+<p>There is a Pytest Docker image defined in this directory (<a href="Dockerfile">Dockerfile</a> that can be used to run Pytest on simple Python projects (that have no other dependencies). You should be able to use it for your homework.</p>
+<p>We will go over an example in class and then look at tests in some real-world open source software.</p>
 <h2 id="further-reading">Further Reading</h2>
 <ul>
 <li><a href="https://docs.google.com/presentation/d/1BMIU80of7iG-OX2OtsjuKApYSkkapMwqJD_ZPvIN8hU/edit?usp=sharing">Lecture slides</a></li>
+<li><a href="https://docs.pytest.org/">Pytest</a></li>
 </ul>
 
 <div id="after">
