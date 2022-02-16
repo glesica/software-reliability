@@ -28,7 +28,7 @@ own directory, which also contains any supplementary files or other resources.
      1. [The Factory Pattern](factory-pattern/)
   1. Development Methodologies
      1. Behavior-driven Development
-     1. Code Review
+     1. [Code Review](code-review/)
      1. Design by Contract
      1. Test-driven Development
      1. [Technical Debt](technical-debt)
