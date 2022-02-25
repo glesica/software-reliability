@@ -191,7 +191,11 @@
     </div>
 </div>
 <h1 id="dependency-injection-homework">Dependency Injection Homework</h1>
-<p>Students will rewrite a program to use dependency injection and include an explanation of what the dependencies are and why they chose to structure them the way they did.</p>
+<p>This assignment deals with an implementation of the game Tic-Tac-Toe. It is contained in the <code>tictactoe</code> directory, or you can <a href="tictactoe.zip">download</a> it as a ZIP file.</p>
+<p>To run, you can use <code>python3 -m tictactoe</code>.</p>
+<p>Our goal is to figure out how we can rewrite this program to be easier to test. Right now, the entire thing is implemented as one big method. We could use some kind of automation testing, but it would be much simpler if we could use unit tests for most of the code.</p>
+<p>In order to improve it, you’ll need to figure out which dependencies you can extract and replace with test doubles through dependency injection. You might also think about how to extract helper methods that better align with the single responsibility principle.</p>
+<p>Rewrite the code and add appropriate tests. Submit your rewritten module as a ZIP file.</p>
 
 <div id="after">
     <a href="#">Back to top</a>
