@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>/topics/integration-testing [software reliability]</title>
+  <title>/topics/integration-testing/example [software reliability]</title>
   <style>
     html {
       line-height: 1.5;
@@ -186,39 +186,26 @@
 <div id="before">
     Software Reliability and Testing
     <div id="before-links">
-        <a href="../.." title="Course Home">Home</a> |
+        <a href="../../.." title="Course Home">Home</a> |
         <a href="https://github.com/glesica/software-reliability" title="Course GitHub Page">GitHub</a>
     </div>
 </div>
-<h1 id="integration-testing">Integration Testing</h1>
-<p>At its core, an integration test is one that attempts to verify more than one part of an overall system together working in tandem. In other words, the different parts are “integrated” together during testing.</p>
-<p>In practice, integration testing often refers to what is called an “end-to-end” test, and this is what we will focus on.</p>
-<h2 id="end-to-end-testing">End-to-End Testing</h2>
-<p>An “end-to-end” test verifies that all (or most) of the components of a software system work correctly together. This kind of testing can be used in two different situations:</p>
-<ul>
-<li>integrating a custom component with off-the-shelf components that will exist in production, like a database</li>
-<li>integrating two or more custom components with one another, and optionally off-the-shelf components</li>
-</ul>
-<p>Let’s say that we’ve written a web app in PHP, a common web scripting language. It is very common to deploy PHP applications using a separate web server like Apache or Nginx. The web server receives requests from the network, then runs the correct PHP code for requests that match rules defined by the developer or system administrator.</p>
-<p>It is also common for web applications in general to rely on a database such as MySQL. During development, however, developers often choose to use a simpler database system such as SQLite that allows them to iterate more quickly (make a change, manually test the change).</p>
+<h1 id="secret-messages-example">Secret Messages Example</h1>
+<p>We’re going to end-to-end test a system for sending encrypted messages between users. A user creates a message, chooses a password for that message, and submits them through a web interface, along with a username and password. The system verifies that the user is allowed to create messages, encrypts the message using the given password, stores the encrypted message in a database, then displays a link where anyone with the password can read the message.</p>
+<p><strong>Important note:</strong> this isn’t a <em>good</em> system, it’s just an example. This is actually a pretty bad way to send secret messages, not least of all because the password and the unencrypted message have to leave the user’s computer. It would be better to encrypt the message on the user’s device and send only the encrypted version to the server. But that wouldn’t be as much fun to test!</p>
+<p>See the sequence diagram below for an illustration of how a message is created. This is the process that students will test as a homework assignment.</p>
 <figure>
-<img src="integration-test.jpg" alt="Integration testing a web application" /><figcaption aria-hidden="true">Integration testing a web application</figcaption>
+<img src="create-message.png" alt="Creating a secret message" /><figcaption aria-hidden="true">Creating a secret message</figcaption>
 </figure>
-<p>An end-to-end test is, at its most basic, an integration that includes an entire “trip” through the system, from input to output, and whatever comes in between.</p>
-<p>The most challenging part of end-to-end testing is often getting all of the necessary components running at the same time, with the correct versions and configurations. Thankfully, Docker can help us manage this complexity.</p>
-<h2 id="docker-compose">Docker Compose</h2>
-<p>We’ve used Docker previously to encapsulate tools in a way that minimizes the impact of differences between computers. We can also use Docker for integration testing. With Docker, developers can easily start different applications and have them talk to one another just like they will in the production environment.</p>
-<p>Even better, since the container images are shared, the application will always run with the correct version of each of its components, whether it is on a developer workstation, a test environment, or a continuous integration environment.</p>
-<p>There are a number of ways to do this, including <a href="http://kubernetes.io">Kubernetes</a>, which has become quite popular for production deployments. We are going to use a tool called Docker <a href="https://docs.docker.com/compose/">Compose</a>. We’re going to use Compose because it is simpler than Kubernetes and ships with Docker itself, meaning it is probably already installed if you have used Docker before.</p>
-<h3 id="create-images">Create Images</h3>
-<p>The first thing we need to do is “Dockerize” each piece of our system. This means, in practice, our application (which may include more than one service), and any third-party components like databases.</p>
-<h3 id="configure-compose">Configure Compose</h3>
-<h3 id="run-the-tests">Run the Tests</h3>
+<p>The process for viewing a message is show below. There is an example test for this process in the <code>tests/</code> directory.</p>
+<figure>
+<img src="view-message.png" alt="Viewing a secrete message" /><figcaption aria-hidden="true">Viewing a secrete message</figcaption>
+</figure>
 
 <div id="after">
     <a href="#">Back to top</a>
     <div id="after-links">
-        <a href="../.." title="Course Home">Home</a> |
+        <a href="../../.." title="Course Home">Home</a> |
         <a href="https://github.com/glesica/software-reliability" title="Course GitHub Page">GitHub</a>
     </div>
 </div>
