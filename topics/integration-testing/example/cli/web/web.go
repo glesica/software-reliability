@@ -67,8 +67,18 @@ func index(w http.ResponseWriter, req *http.Request) {
 
 		// 1. Send message and secret to encryption service
 		message := req.Form.Get("message")
+		if message == "" {
+			log.Println("message not found in index request")
+			log.Printf("form contained %s\n", req.Form)
+			w.WriteHeader(http.StatusBadRequest)
+			w.Write([]byte(http.StatusText(http.StatusBadRequest)))
+			return
+		}
+
 		secret := req.Form.Get("secret")
 		if secret == "" {
+			log.Println("secret not found in index request")
+			log.Printf("form contained %s\n", req.Form)
 			w.WriteHeader(http.StatusBadRequest)
 			w.Write([]byte(http.StatusText(http.StatusBadRequest)))
 			return
@@ -83,20 +93,17 @@ func index(w http.ResponseWriter, req *http.Request) {
 			return
 		}
 
-		// 2. Generate ID for message
-		messageID := "fa8723fh2dh7d"
-
-		// 3. Store encrypted message and ID in message DB
-		err = services.StoreMessage(encryptedMessage, messageID)
+		// 2. Store encrypted message in message DB and get ID
+		messageID, err := services.StoreMessage(encryptedMessage)
 		if err != nil {
-			log.Println("failed to encrypt message")
+			log.Println("failed to store encrypted message")
 			log.Println(err.Error())
 			w.WriteHeader(http.StatusInternalServerError)
 			w.Write([]byte(http.StatusText(http.StatusInternalServerError)))
 			return
 		}
 
-		// 4. Redirect user to message view
+		// 3. Redirect user to message view
 		showView(w, messageID)
 	}
 }
@@ -113,6 +120,8 @@ func view(w http.ResponseWriter, req *http.Request) {
 		// 1. Get the message ID from the URL
 		messageID, exists := req.URL.Query()["id"]
 		if !exists {
+			log.Println("id not found in view query params")
+			log.Printf("query params contained %s\n", req.URL.Query())
 			w.WriteHeader(http.StatusBadRequest)
 			w.Write([]byte(http.StatusText(http.StatusBadRequest)))
 			return
@@ -147,7 +156,7 @@ func view(w http.ResponseWriter, req *http.Request) {
 
 		encryptedMessage, err := services.FetchMessage(messageID)
 		if err != nil {
-			log.Println("Failed to parse view-page template")
+			log.Println("failed to fetch message")
 			log.Println(err.Error())
 			w.WriteHeader(http.StatusInternalServerError)
 			w.Write([]byte(http.StatusText(http.StatusInternalServerError)))
@@ -157,7 +166,7 @@ func view(w http.ResponseWriter, req *http.Request) {
 		// 2. Send message and secret to encryption service
 		message, err := services.DecryptMessage(encryptedMessage, secret)
 		if err != nil {
-			log.Println("Failed to parse view-page template")
+			log.Println("failed to decrypt message")
 			log.Println(err.Error())
 			w.WriteHeader(http.StatusInternalServerError)
 			w.Write([]byte(http.StatusText(http.StatusInternalServerError)))
