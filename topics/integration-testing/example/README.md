@@ -12,15 +12,24 @@ password and the unencrypted message have to leave the user's computer. It would
 be better to encrypt the message on the user's device and send only the
 encrypted version to the server. But that wouldn't be as much fun to test!
 
+## Tests
+
 See the sequence diagram below for an illustration of how a message is created.
 This is the process that students will test as a homework assignment.
 
 ![Creating a secret message](create-message.png)
 
 The process for viewing a message is show below. There is an example test for
-this process in the `tests/` directory.
+this process in the `tests/` directory. This test uses
+[Puppeteer](https://pptr.dev) to automate the browser and
+[Chai](https://www.chaijs.com) for assertions. See the documentation for more
+information. You can use the existing test as a starting point for your own.
 
 ![Viewing a secret message](view-message.png)
+
+To run a test script, you must have [NodeJS](http://nodejs.org) installed. Then,
+use the `npm` tool to install dependencies: `npm install --include=dev`. Once
+that is done, you can run a script with the `node` tool: `node read-message.js`.
 
 ## Services
 

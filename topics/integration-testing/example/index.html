@@ -193,14 +193,16 @@
 <h1 id="secret-messages-example">Secret Messages Example</h1>
 <p>We’re going to end-to-end test a system for sending encrypted messages between users. A user creates a message, chooses a password for that message, and submits them through a web interface. The system encrypts the message using the given password, stores the encrypted message in a database, then displays a link where anyone with the password can read the message.</p>
 <p><strong>Important note:</strong> this isn’t a <em>good</em> system, it’s just an example. This is actually a pretty bad way to send secret messages, not least of all because the password and the unencrypted message have to leave the user’s computer. It would be better to encrypt the message on the user’s device and send only the encrypted version to the server. But that wouldn’t be as much fun to test!</p>
+<h2 id="tests">Tests</h2>
 <p>See the sequence diagram below for an illustration of how a message is created. This is the process that students will test as a homework assignment.</p>
 <figure>
 <img src="create-message.png" alt="Creating a secret message" /><figcaption aria-hidden="true">Creating a secret message</figcaption>
 </figure>
-<p>The process for viewing a message is show below. There is an example test for this process in the <code>tests/</code> directory.</p>
+<p>The process for viewing a message is show below. There is an example test for this process in the <code>tests/</code> directory. This test uses <a href="https://pptr.dev">Puppeteer</a> to automate the browser and <a href="https://www.chaijs.com">Chai</a> for assertions. See the documentation for more information. You can use the existing test as a starting point for your own.</p>
 <figure>
 <img src="view-message.png" alt="Viewing a secret message" /><figcaption aria-hidden="true">Viewing a secret message</figcaption>
 </figure>
+<p>To run a test script, you must have <a href="http://nodejs.org">NodeJS</a> installed. Then, use the <code>npm</code> tool to install dependencies: <code>npm install --include=dev</code>. Once that is done, you can run a script with the <code>node</code> tool: <code>node read-message.js</code>.</p>
 <h2 id="services">Services</h2>
 <p>Each of the boxes in the diagrams above represents a service. The left-most two are custom, they run code that I’ve written. The one on the right, on the other hand, is a third-party component (a database system). This mixture is common in real-world applications.</p>
 <p>As an aside, why would we want to structure an application like this? The database is probably easy to understand, but what about the “Encryption Service”? This is a small example of a common architectural pattern called “micro-services”. Put simply, this involves building applications out of small, independent services that communicate using HTTP or some other network protocol.</p>

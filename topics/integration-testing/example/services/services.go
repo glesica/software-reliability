@@ -77,7 +77,9 @@ func realDecryptMessage(message, secret string) (string, error) {
 // Messages
 // --------
 
-var fakeMessages []string
+var fakeMessages = []string{
+	"test message",
+}
 
 func StoreMessage(message string) (string, error) {
 	return fakeStoreMessage(message)
