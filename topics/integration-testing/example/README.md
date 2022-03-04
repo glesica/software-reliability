@@ -20,5 +20,5 @@ This is the process that students will test as a homework assignment.
 The process for viewing a message is show below. There is an example test for
 this process in the `tests/` directory.
 
-![Viewing a secrete message](view-message.png)
+![Viewing a secret message](view-message.png)
 
