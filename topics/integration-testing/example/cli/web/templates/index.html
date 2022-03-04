@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Super Secret Message Service</title>
+        <link rel="icon" type="image/x-icon" href="/favicon.png">
+        <style>
+            body {
+                font-size: 1.2rem;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            h1 {
+                margin: 4px 0;
+            }
+            .section {
+                margin-bottom: 8px;
+            }
+            textarea {
+                font-size: 1.1rem;
+                width: 450px;
+                height: 300px;
+                border: 1px solid black;
+                padding: 8px;
+                margin: 0;
+            }
+            input[type=password], input[type=text] {
+                font-size: 1.1rem;
+                border: 1px solid black;
+                padding: 8px;
+                margin: 0;
+            }
+            button[type=submit] {
+                font-size: 1.0rem;
+                padding: 8px 12px;
+                margin: 8px 0 0 0;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Super Secret Message Service</h1>
+        <p>To create a new Super Secret Message, put your content in the box
+        below, choose a password, and click "Submit".</p>
+        <form action="/" method="POST">
+            <div class="section">
+                <textarea id="ta-message" name="message" autocomplete="off" placeholder="Message content..."></textarea>
+            </div>
+            <div class="section">
+                <input type="password" id="i-secret" name="secret" autocomplete="new-password" placeholder="Secret..." />
+            </div>
+            <div class="section">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </body>
+</html>

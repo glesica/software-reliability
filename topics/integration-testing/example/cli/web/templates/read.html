@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Super Secret Message Service</title>
+        <link rel="icon" type="image/x-icon" href="/favicon.png">
+        <style>
+            body {
+                font-size: 1.2rem;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            h1 {
+                margin: 4px 0;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Super Secret Message Service</h1>
+        <p>Below is the decrypted contents of the message.</p>
+        <p><b>Message</b> {{ .ID }}</p>
+        <p>{{ .Message }}</p>
+    </body>
+</html>

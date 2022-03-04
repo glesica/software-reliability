@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Super Secret Message Service</title>
+        <link rel="icon" type="image/x-icon" href="/favicon.png">
+        <style>
+            body {
+                font-size: 1.2rem;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            h1 {
+                margin: 4px 0;
+            }
+            .section {
+                margin-bottom: 8px;
+            }
+            input[type=password], input[type=text] {
+                font-size: 1.1rem;
+                border: 1px solid black;
+                padding: 8px;
+                margin: 0;
+            }
+            button[type=submit] {
+                font-size: 1.0rem;
+                padding: 8px 12px;
+                margin: 8px 0 0 0;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Super Secret Message Service</h1>
+        <p>To view this message, enter the secret below and click "Submit".
+        You can send this page to anyone and they can read the message, as
+        long as they know the secret.</p>
+        <p><b>Message</b> {{ .ID }}</p>
+        <form action="/view" method="POST">
+            <input type="hidden" id="i-id" name="id" value="{{ .ID }}" />
+            <div class="section">
+                <input type="password" id="i-secret" name="secret" autocomplete="off" placeholder="Secret..." />
+            </div>
+            <div class="section">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </body>
+</html>
