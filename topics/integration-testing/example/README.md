@@ -22,3 +22,29 @@ this process in the `tests/` directory.
 
 ![Viewing a secret message](view-message.png)
 
+## Services
+
+Each of the boxes in the diagrams above represents a service. The left-most two
+are custom, they run code that I've written. The one on the right, on the other
+hand, is a third-party component (a database system). This mixture is common in
+real-world applications.
+
+As an aside, why would we want to structure an application like this? The
+database is probably easy to understand, but what about the "Encryption
+Service"? This is a small example of a common architectural pattern called
+"micro-services". Put simply, this involves building applications out of small,
+independent services that communicate using HTTP or some other network protocol.
+
+The benefit, in this case, comes from the fact that the encryption service is
+separate from the web server.  This means a couple things:
+
+  1. the encryption service can be developed by a complete separate team
+  2. the web server will stay up even if the encryption service crashes
+
+The second point might seems a little dubious since, in our case, the
+application is useless if the encryption service goes down. However, there are
+plenty of examples where applications can maintain at least partial
+functionality even if individual services go down. Further, even in our case, it
+is nice that a bug in our encryption logic can't take down the whole application
+since, this way, at least our users can still see that their existing messages
+are safe, even if they can't be decrypted.
