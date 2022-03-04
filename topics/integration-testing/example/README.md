@@ -2,10 +2,9 @@
 
 We're going to end-to-end test a system for sending encrypted messages between
 users. A user creates a message, chooses a password for that message, and
-submits them through a web interface, along with a username and password. The
-system verifies that the user is allowed to create messages, encrypts the
-message using the given password, stores the encrypted message in a database,
-then displays a link where anyone with the password can read the message.
+submits them through a web interface. The system encrypts the message using the
+given password, stores the encrypted message in a database, then displays a link
+where anyone with the password can read the message.
 
 **Important note:** this isn't a *good* system, it's just an example. This is
 actually a pretty bad way to send secret messages, not least of all because the
