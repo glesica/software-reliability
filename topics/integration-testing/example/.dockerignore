@@ -1,2 +1,6 @@
 encrypt
 web
+fixtures/
+data/
+media/
+tests/
