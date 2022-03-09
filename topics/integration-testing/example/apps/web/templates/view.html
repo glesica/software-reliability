@@ -30,17 +30,19 @@
     <body>
         <h1>Super Secret Message Service</h1>
         <p>To view this message, enter the secret below and click "Submit".
-        You can send this page to anyone and they can read the message, as
+        You can send this page to anyone, so they can read the message, as
         long as they know the secret.</p>
         <p><b>Message</b> {{ .ID }}</p>
         <form action="/view" method="POST">
             <input type="hidden" id="i-id" name="id" value="{{ .ID }}" />
             <div class="section">
-                <input type="password" id="i-secret" name="secret" autocomplete="off" placeholder="Secret..." />
+                <input type="password" autofocus id="i-secret" name="secret" autocomplete="off" placeholder="Secret..." />
             </div>
             <div class="section">
                 <button id="b-submit" type="submit">Submit</button>
             </div>
         </form>
+        <hr>
+        <p><a href="/">Home</a></p>
     </body>
 </html>

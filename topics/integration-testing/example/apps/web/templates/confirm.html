@@ -12,12 +12,13 @@
                 margin: 4px 0;
             }
         </style>
+        <meta http-equiv="Refresh" content="0; url='/view?id={{ .ID }}'" />
     </head>
     <body>
         <h1>Super Secret Message Service</h1>
-        <p>Below is the decrypted contents of the message.</p>
-        <p><b>Message</b> <span id="id">{{ .ID }}</span></p>
-        <pre id="message">{{ .Message }}</pre>
+        <p>Your message has been created. Click the link below, or you will
+        be redirected shortly.</p>
+        <p><a href="/view?id={{ .ID }}">Public Link</a></p>
         <hr>
         <p><a href="/">Home</a></p>
     </body>

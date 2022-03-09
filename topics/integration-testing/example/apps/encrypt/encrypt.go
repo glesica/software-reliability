@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"net/http"
 )
 
@@ -12,11 +12,10 @@ func encrypt(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	fmt.Fprintf(w, "hi there")
-
 	// 1. Get the message and secret from params
 	message, exists := req.URL.Query()["message"]
 	if !exists {
+		log.Print("missing message query param on encrypt")
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte(http.StatusText(http.StatusBadRequest)))
 		return
@@ -24,13 +23,14 @@ func encrypt(w http.ResponseWriter, req *http.Request) {
 
 	secret, exists := req.URL.Query()["secret"]
 	if !exists {
+		log.Print("missing secret query param on encrypt")
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte(http.StatusText(http.StatusBadRequest)))
 		return
 	}
 
 	// 2. Encrypt the message with the secret
-	encryptedMessage := message[0] + "\n" + secret[0]
+	encryptedMessage := XorMessage(message[0], secret[0])
 
 	// 3. Return the encrypted message to the caller
 	w.WriteHeader(http.StatusOK)
@@ -44,11 +44,10 @@ func decrypt(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	fmt.Fprintf(w, "hi there")
-
 	// 1. Get the encrypted message and secret from params
 	message, exists := req.URL.Query()["message"]
 	if !exists {
+		log.Print("missing message query param on decrypt")
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte(http.StatusText(http.StatusBadRequest)))
 		return
@@ -56,13 +55,14 @@ func decrypt(w http.ResponseWriter, req *http.Request) {
 
 	secret, exists := req.URL.Query()["secret"]
 	if !exists {
+		log.Print("missing secret query param on decrypt")
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte(http.StatusText(http.StatusBadRequest)))
 		return
 	}
 
 	// 2. Decrypt the message with the secret
-	decryptedMessage := message[0] + "\n" + "decrypted " + secret[0]
+	decryptedMessage := XorMessage(message[0], secret[0])
 
 	// 3. Return the message to the caller
 	w.WriteHeader(http.StatusOK)
@@ -73,5 +73,8 @@ func main() {
 	http.HandleFunc("/encrypt", encrypt)
 	http.HandleFunc("/decrypt", decrypt)
 
-	http.ListenAndServe(":8091", nil)
+	err := http.ListenAndServe(":8091", nil)
+	if err != nil {
+		panic("failed to start encrypt server")
+	}
 }

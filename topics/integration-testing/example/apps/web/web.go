@@ -21,6 +21,9 @@ type ViewParams struct {
 	ID string
 }
 
+//go:embed templates/confirm.html
+var confirmTemplateContent string
+
 //go:embed templates/read.html
 var readTemplateContent string
 
@@ -69,7 +72,6 @@ func index(w http.ResponseWriter, req *http.Request) {
 		message := req.Form.Get("message")
 		if message == "" {
 			log.Println("message not found in index request")
-			log.Printf("form contained %s\n", req.Form)
 			w.WriteHeader(http.StatusBadRequest)
 			w.Write([]byte(http.StatusText(http.StatusBadRequest)))
 			return
@@ -78,7 +80,6 @@ func index(w http.ResponseWriter, req *http.Request) {
 		secret := req.Form.Get("secret")
 		if secret == "" {
 			log.Println("secret not found in index request")
-			log.Printf("form contained %s\n", req.Form)
 			w.WriteHeader(http.StatusBadRequest)
 			w.Write([]byte(http.StatusText(http.StatusBadRequest)))
 			return
@@ -104,7 +105,26 @@ func index(w http.ResponseWriter, req *http.Request) {
 		}
 
 		// 3. Redirect user to message view
-		showView(w, messageID)
+		templ, err := template.New("confirm-page").Parse(confirmTemplateContent)
+		if err != nil {
+			log.Println("Failed to parse confirm-page template")
+			log.Println(err.Error())
+			w.WriteHeader(http.StatusInternalServerError)
+			w.Write([]byte(http.StatusText(http.StatusInternalServerError)))
+			return
+		}
+
+		var buffer bytes.Buffer
+		err = templ.Execute(&buffer, ViewParams{ID: messageID})
+		if err != nil {
+			log.Println("Failed to execute confirm-page template")
+			log.Println(err.Error())
+			w.WriteHeader(http.StatusInternalServerError)
+			w.Write([]byte(http.StatusText(http.StatusInternalServerError)))
+			return
+		}
+
+		w.Write(buffer.Bytes())
 	}
 }
 
@@ -118,17 +138,35 @@ func view(w http.ResponseWriter, req *http.Request) {
 	if req.Method == http.MethodGet {
 		// On get:
 		// 1. Get the message ID from the URL
-		messageID, exists := req.URL.Query()["id"]
-		if !exists {
+		messageID := req.URL.Query().Get("id")
+		if messageID == "" {
 			log.Println("id not found in view query params")
-			log.Printf("query params contained %s\n", req.URL.Query())
 			w.WriteHeader(http.StatusBadRequest)
 			w.Write([]byte(http.StatusText(http.StatusBadRequest)))
 			return
 		}
 
-		// 2. Populate it in the secret field
-		showView(w, messageID[0])
+		// 2. Display form to the user
+		templ, err := template.New("view-page").Parse(viewTemplateContent)
+		if err != nil {
+			log.Println("Failed to parse view-page template")
+			log.Println(err.Error())
+			w.WriteHeader(http.StatusInternalServerError)
+			w.Write([]byte(http.StatusText(http.StatusInternalServerError)))
+			return
+		}
+
+		var buffer bytes.Buffer
+		err = templ.Execute(&buffer, ViewParams{ID: messageID})
+		if err != nil {
+			log.Println("Failed to execute view-page template")
+			log.Println(err.Error())
+			w.WriteHeader(http.StatusInternalServerError)
+			w.Write([]byte(http.StatusText(http.StatusInternalServerError)))
+			return
+		}
+
+		w.Write(buffer.Bytes())
 	}
 
 	if req.Method == http.MethodPost {
@@ -139,16 +177,6 @@ func view(w http.ResponseWriter, req *http.Request) {
 		messageID := req.Form.Get("id")
 		if messageID == "" {
 			log.Println("id not found in view request")
-			log.Printf("form contained %s\n", req.Form)
-			w.WriteHeader(http.StatusBadRequest)
-			w.Write([]byte(http.StatusText(http.StatusBadRequest)))
-			return
-		}
-
-		secret := req.Form.Get("secret")
-		if secret == "" {
-			log.Println("secret not found in view request")
-			log.Printf("form contained %s\n", req.Form)
 			w.WriteHeader(http.StatusBadRequest)
 			w.Write([]byte(http.StatusText(http.StatusBadRequest)))
 			return
@@ -164,6 +192,14 @@ func view(w http.ResponseWriter, req *http.Request) {
 		}
 
 		// 2. Send message and secret to encryption service
+		secret := req.Form.Get("secret")
+		if secret == "" {
+			log.Println("secret not found in view request")
+			w.WriteHeader(http.StatusBadRequest)
+			w.Write([]byte(http.StatusText(http.StatusBadRequest)))
+			return
+		}
+
 		message, err := services.DecryptMessage(encryptedMessage, secret)
 		if err != nil {
 			log.Println("failed to decrypt message")
@@ -197,29 +233,6 @@ func view(w http.ResponseWriter, req *http.Request) {
 	}
 }
 
-func showView(w http.ResponseWriter, messageID string) {
-	templ, err := template.New("view-page").Parse(viewTemplateContent)
-	if err != nil {
-		log.Println("Failed to parse view-page template")
-		log.Println(err.Error())
-		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte(http.StatusText(http.StatusInternalServerError)))
-		return
-	}
-
-	var buffer bytes.Buffer
-	err = templ.Execute(&buffer, ViewParams{ID: messageID})
-	if err != nil {
-		log.Println("Failed to execute view-page template")
-		log.Println(err.Error())
-		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte(http.StatusText(http.StatusInternalServerError)))
-		return
-	}
-
-	w.Write(buffer.Bytes())
-}
-
 func main() {
 	http.HandleFunc("/favicon.png", func(w http.ResponseWriter, req *http.Request) {
 		image, err := os.Open("images/favicon.png")
@@ -235,5 +248,8 @@ func main() {
 	http.HandleFunc("/", index)
 	http.HandleFunc("/view", view)
 
-	http.ListenAndServe(":8090", nil)
+	err := http.ListenAndServe(":8090", nil)
+	if err != nil {
+		panic("failed to start web server")
+	}
 }
