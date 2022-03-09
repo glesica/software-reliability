@@ -1,5 +1,7 @@
 # Integration Testing
 
+[Example](example/)
+
 At its core, an integration test is one that attempts to verify more than one
 part of an overall system together working in tandem. In other words, the
 different parts are "integrated" together during testing.
@@ -63,7 +65,20 @@ The first thing we need to do is "Dockerize" each piece of our system. This
 means, in practice, our application (which may include more than one service),
 and any third-party components like databases.
 
+In general, we just need a `Dockerfile` for each service we intend to run.
+
 ### Configure Compose
 
+Compose uses a file called `docker-compose.yml` by default. Take a look at the
+one in the `example/` directory. The basic format is outlined below.
+
+```yaml
+services:
+  <service name>:
+    <service configuration...>
+```
+
 ### Run the Tests
+
+Once Compose has been configured correctly, the entire application can be run.
 

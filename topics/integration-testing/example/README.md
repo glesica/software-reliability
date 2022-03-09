@@ -90,6 +90,29 @@ listed below.
 
 The most obvious way to run the application is to start the web and encryption
 servers in separate terminals, run a MySQL database (perhaps in a third
-terminal), and then open a web browser and point it at the appropriate URL.
-In fact, this works fine. However, it would probably get pretty annoying after
+terminal), and then open a web browser and point it at the appropriate URL.  In
+fact, this works fine. However, it would probably get pretty annoying after
 awhile, and it doesn't really help us at all with the production environment.
+
+We can use Docker Compose to help us get around this problem. Compose can run
+our entire application, including all three "services" (web, encryption, and
+database) and even handle making sure they can talk to one another over the
+network. Take a look at `docker-compose.yml` for details. We can start all of
+the services at once with:
+
+```shell
+docker compose --env-file env.dev up --build
+```
+
+The `--env-file` option tells compose where to load environment variables from.
+If you look at `env.dev` you'll see the variables the application requires,
+along with values suitable for development and testing.
+
+The `up` command tells Compose to start the entire application (bring it "up").
+
+Finally, the `--build` flag tells Compose to build the containers for our
+service before starting everything. This way, changes we've made to the code
+will be reflected in the running service.
+
+Now we can access the application at <http://localhost:8090>.
+
