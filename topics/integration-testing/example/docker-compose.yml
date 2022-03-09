@@ -24,8 +24,6 @@ services:
       context: .
       dockerfile: Dockerfile_encrypt
     restart: unless-stopped
-    environment:
-      SUPERSECRET_FAKE_ENCRYPT: '${SUPERSECRET_FAKE_ENCRYPT}'
     logging:
       driver: json-file
       options:
@@ -43,6 +41,7 @@ services:
       - encrypt_service
       - message_db
     environment:
+      SUPERSECRET_FAKE_ENCRYPT: '${SUPERSECRET_FAKE_ENCRYPT}'
       SUPERSECRET_FAKE_DB: '${SUPERSECRET_FAKE_DB}'
       SUPERSECRET_DB_USER: '${SUPERSECRET_DB_USER:?no db user set}'
       SUPERSECRET_DB_PASSWORD: '${SUPERSECRET_DB_PASSWORD:?no db password set}'
