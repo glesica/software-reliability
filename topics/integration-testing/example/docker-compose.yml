@@ -1,0 +1,59 @@
+version: '3.1'
+
+services:
+  message_db:
+    image: 'mariadb:10.7.3'
+    restart: unless-stopped
+    environment:
+      MARIADB_USER: '${SUPERSECRET_DB_USER:?no db user set}'
+      MARIADB_PASSWORD: '${SUPERSECRET_DB_PASSWORD:?no db password set}'
+      MARIADB_RANDOM_ROOT_PASSWORD: yes
+      MARIADB_DATABASE: supersecret_db
+    logging:
+      driver: json-file
+      options:
+        max-size: 10000k
+        max-file: 10
+    ports:
+      - '3306'
+    volumes:
+      - ./data:/var/lib/mysql
+
+  encrypt_service:
+    build:
+      context: .
+      dockerfile: Dockerfile_encrypt
+    restart: unless-stopped
+    environment:
+      SUPERSECRET_FAKE_ENCRYPT: '${SUPERSECRET_FAKE_ENCRYPT}'
+    logging:
+      driver: json-file
+      options:
+        max-size: 1000k
+        max-file: 10
+    ports:
+      - '8091'
+
+  web_service:
+    build:
+      context: .
+      dockerfile: Dockerfile_web
+    restart: unless-stopped
+    depends_on:
+      - encrypt_service
+      - message_db
+    environment:
+      SUPERSECRET_FAKE_DB: '${SUPERSECRET_FAKE_DB}'
+      SUPERSECRET_DB_USER: '${SUPERSECRET_DB_USER:?no db user set}'
+      SUPERSECRET_DB_PASSWORD: '${SUPERSECRET_DB_PASSWORD:?no db password set}'
+      SUPERSECRET_DB_HOST: message_db
+      SUPERSECRET_ENCRYPT_HOST: encrypt_service
+    logging:
+      driver: json-file
+      options:
+        max-size: 1000k
+        max-file: 10
+    ports:
+      - '8090:8090'
+    volumes:
+      - ./wikidata:/wiki/data

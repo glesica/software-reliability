@@ -1,0 +1,9 @@
+FROM golang:1.17-bullseye AS builder
+COPY . /opt/code
+WORKDIR /opt/code
+RUN go clean && go build supersecret/apps/encrypt/...
+
+FROM debian:bullseye-slim
+COPY --from=builder /opt/code/encrypt /usr/local/bin/supersecret-encrypt
+
+CMD supersecret-encrypt

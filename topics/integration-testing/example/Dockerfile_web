@@ -1,0 +1,9 @@
+FROM golang:1.17-bullseye AS builder
+COPY . /opt/code
+WORKDIR /opt/code
+RUN go clean && go build supersecret/apps/web/...
+
+FROM debian:bullseye-slim
+COPY --from=builder /opt/code/web /usr/local/bin/supersecret-web
+
+CMD supersecret-web
