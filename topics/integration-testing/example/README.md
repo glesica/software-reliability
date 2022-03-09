@@ -57,3 +57,39 @@ functionality even if individual services go down. Further, even in our case, it
 is nice that a bug in our encryption logic can't take down the whole application
 since, this way, at least our users can still see that their existing messages
 are safe, even if they can't be decrypted.
+
+## Environments
+
+There are two environments that our code can run in. The first is a developer's
+computer (we might call this the "development" environment).
+
+In this environment, most of the code runs on the same machine, we're not
+worried about long-term data persistence (if your test messages get lost when
+you restart, it's not a big deal), we don't particularly care about using "real"
+encryption, and, ideally, we'd actually like for there to be some "fake" data in
+the database when we start the whole thing up.
+
+The other environment is commonly called "production", or "prod" for short. This
+is where the application is available to users. In this environment we want
+reliable data persistence, real encryption, and we don't need any "fake" data to
+test with.
+
+In order to control how our application works when we run it, we can use
+environment variables. For example, when the `SUPERSECRET_FAKE_ENCRYPT`
+variable is set, the application won't actually use the encryption service to
+encrypt the data and will instead prepend messages with "encrypted: " so that
+we can tell they have been through encryption for testing purposes.
+
+A list of environment variables that we can use to control the application are
+listed below.
+
+  * `SUPERSECRET_FAKE_ENCRYPT` - use fake encryption when set to "true"
+  * `SUPERSECRET_FAKE_DB` - use a fake, in-memory database when set to "true"
+
+## Running
+
+The most obvious way to run the application is to start the web and encryption
+servers in separate terminals, run a MySQL database (perhaps in a third
+terminal), and then open a web browser and point it at the appropriate URL.
+In fact, this works fine. However, it would probably get pretty annoying after
+awhile, and it doesn't really help us at all with the production environment.
