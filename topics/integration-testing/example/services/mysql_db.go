@@ -117,7 +117,5 @@ func realFetchMessage(messageID string) (string, error) {
 		return "", err
 	}
 
-	log.Print("fetched message: " + message)
-
 	return message, nil
 }

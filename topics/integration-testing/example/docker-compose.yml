@@ -55,5 +55,3 @@ services:
         max-file: 10
     ports:
       - '8090:8090'
-    volumes:
-      - ./wikidata:/wiki/data
