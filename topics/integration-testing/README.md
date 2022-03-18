@@ -1,6 +1,7 @@
 # Integration Testing
 
-[Example](example/)
+  * [Example](example/)
+  * [Assignment](assignment/)
 
 At its core, an integration test is one that attempts to verify more than one
 part of an overall system together working in tandem. In other words, the

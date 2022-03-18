@@ -14,6 +14,7 @@ topics.
   * [Unit Testing](../topics/unit-testing/assignment/)
   * [Dependency Injection](../topics/dependency-injection/assignment/)
   * [Code Review](../topics/code-review/assignment/)
+  * [Integration Testing](../topics/integration-testing/assignment/)
 
 ## Projects
 
