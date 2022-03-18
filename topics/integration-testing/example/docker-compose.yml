@@ -53,4 +53,4 @@ services:
         max-size: 1000k
         max-file: 10
     ports:
-      - '8090:8090'
+      - '${SUPERSECRET_PORT:-8090}:8090'

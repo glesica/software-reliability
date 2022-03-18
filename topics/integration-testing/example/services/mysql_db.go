@@ -16,25 +16,25 @@ const DBHostVar = "SUPERSECRET_DB_HOST"
 var dsn string
 
 func init() {
-	dbUser := os.Getenv(DBUserVar)
-	if dbUser == "" {
-		panic(DBUserVar + " must be set")
-	}
-
-	dbPassword := os.Getenv(DBPasswordVar)
-	if dbPassword == "" {
-		panic(DBPasswordVar + " must be set")
-	}
-
-	dbHost := os.Getenv(DBHostVar)
-	if dbHost == "" {
-		dbHost = "localhost"
-	}
-
-	dsn = dbUser + ":" + dbPassword + "@tcp(" + dbHost + ":3306)" + "/supersecret_db"
-
-	// Create the DB skeleton if necessary
 	if !useFakeDB {
+		dbUser := os.Getenv(DBUserVar)
+		if dbUser == "" {
+			panic(DBUserVar + " must be set")
+		}
+
+		dbPassword := os.Getenv(DBPasswordVar)
+		if dbPassword == "" {
+			panic(DBPasswordVar + " must be set")
+		}
+
+		dbHost := os.Getenv(DBHostVar)
+		if dbHost == "" {
+			dbHost = "localhost"
+		}
+
+		dsn = dbUser + ":" + dbPassword + "@tcp(" + dbHost + ":3306)" + "/supersecret_db"
+
+		// Create the DB skeleton if necessary
 		db, err := sql.Open("mysql", dsn)
 		if err != nil {
 			log.Print(err.Error())
