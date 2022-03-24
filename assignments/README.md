@@ -15,6 +15,7 @@ topics.
   * [Dependency Injection](../topics/dependency-injection/assignment/)
   * [Code Review](../topics/code-review/assignment/)
   * [Integration Testing](../topics/integration-testing/assignment/)
+  * [Linters and Formatters](../linters-and-formatters/assignment/)
 
 ## Projects
 
