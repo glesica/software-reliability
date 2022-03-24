@@ -18,3 +18,21 @@ topics.
 
 ## Projects
 
+### Complex Codebase Assignment
+
+Now that you’ve had time to become familiar with the code your capstone group
+mates have written, it is time to write some tests. You will each be responsible
+for writing several tests for the group’s code, described below.
+
+Unit tests - choose one class, or several functions, and write unit tests for
+them. You may need to make changes to the code to make it easier to test. You
+should produce at least 10 unit tests that cover at least three methods or
+functions.
+
+Functional / integration tests - create one end-to-end functional integration
+test. This might be a command line test, in which case you can use Commander, or
+it can be a browser-based test using Puppeteer.
+
+Submit your code through Moodle as a ZIP file, along with an explanation of what
+you tested and any changes to the code you made to aid in testing.
+
