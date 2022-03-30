@@ -129,7 +129,11 @@ decide, between any two languages, which is *more* strongly (or weakly) typed.
 
 ### Benefits of Strong Typing
 
+In class...
+
 ### Benefits of Weak Typing
+
+In class...
 
 ## Static and Dynamic Typing
 
@@ -146,6 +150,11 @@ additional information in the code itself, often with a minimal increase in
 verbosity.
 
 ## Type Inference
+
+In many cases, programming languages have the ability to "guess" which type or
+types are valid in a particular situation. This is called "type inference". The
+main benefit of type inference is that the programmer doesn't need to provide a
+type annotation in many cases.
 
 ## Compound Types
 
