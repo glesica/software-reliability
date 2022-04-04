@@ -165,7 +165,7 @@ In general, languages with more restrictive type systems are able to provide
 better type inference because they can safely make more assumptions. For
 example, OCaml has separate mathematical operators for floating point and
 integer values. This means that if you write a function that accepts and adds
-two values using `.+` (the addition operator for floats) instead of `+` (the
+two values using `+.` (the addition operator for floats) instead of `+` (the
 addition operator for integers) the compiler can assume that the function
 parameters are floating point values.
 
