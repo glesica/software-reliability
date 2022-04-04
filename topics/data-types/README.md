@@ -127,13 +127,14 @@ than a dichotomy. So, while we may not always be able to decide whether a given
 language should be considered "strongly" or "weakly" typed, we can usually
 decide, between any two languages, which is *more* strongly (or weakly) typed.
 
-### Benefits of Strong Typing
+Typing "strength" is a trade-off. If some cases, strong types can help us catch
+logic errors, like trying to divide by a boolean which, strictly speaking, could
+make sense, but probably represents a bug.
 
-In class...
-
-### Benefits of Weak Typing
-
-In class...
+On the other hand, weak types can simplify accepting user input or parsing data
+files since values behave closer to the way we, as humans, would interpret them.
+For example, if I told you to add 5 and "5", you'd probably just tell me the
+answer is 10, despite the fact that "5" isn't technically a number.
 
 ## Static and Dynamic Typing
 
@@ -156,19 +157,90 @@ types are valid in a particular situation. This is called "type inference". The
 main benefit of type inference is that the programmer doesn't need to provide a
 type annotation in many cases.
 
+Some languages, like Haskell and OCaml provide very powerful type inference
+facilities. Others, like Java and Go support type inference, but only in fairly
+specific scenarios.
+
+In general, languages with more restrictive type systems are able to provide
+better type inference because they can safely make more assumptions. For
+example, OCaml has separate mathematical operators for floating point and
+integer values. This means that if you write a function that accepts and adds
+two values using `.+` (the addition operator for floats) instead of `+` (the
+addition operator for integers) the compiler can assume that the function
+parameters are floating point values.
+
 ## Compound Types
 
+Most languages support grouping values together into compound (or composite)
+types. They are often called "structures" or "classes" when they are implemented
+in programming languages.
+
+Some, but not all, languages allow for formal relationships between compound
+types, like inheritance. Regardless of whether we can declare a relationship,
+though, relationships between compound types always exist because we can
+implement common behaviors for different types.
+
 ## Union and Intersection Types
+
+In some cases, we may want to write code that can operate on more than one type,
+even in cases where the types do not share a common super-type. To do this, we
+can use a union type (sometimes called a sum type).
+
+A classic union type example is a tree data structure since we often want to use
+different types to represent vertices in different positions within the tree.
+In the example below we have two types, `Leaf` to represent a leaf vertex, and
+`Node` to represent an interior vertex.
+
+```python
+class Leaf:
+  def __init__(self, value):
+    self.value = value
+  
+class Node:
+  def __init__(self, left, right):
+    self.left = left
+    self.right = right
+```
+
+If we want to apply types to these data structures we find that doing so through
+inheritance is rather tricky. There isn't really a single super-class that we
+could define to encompass both. Since we can't define a common super-class, we
+don't know what type `left` and `right` ought to have. If we use `Node`, then
+our tree will recurse infinitely and we'll run out of memory. If we use `Leaf`,
+then we our tree can only have three vertices.
+
+We get around this with a union type.
+
+```python
+from typing import Union
+
+Tree = Union[Leaf, Node]
+
+class Leaf:
+  def __init__(self, value):
+    self.value = value
+  
+class Node:
+  def __init__(self, left: Tree, right: Tree):
+    self.left = left
+    self.right = right
+```
+
+Now, when we use `left` and `right`, we are required to check their types first,
+since we're not sure which one we have, a `Leaf` or a `Node`. However, we do
+know that we can only have one of these two, so we're still in a much better
+position than if we'd left them un-typed.
 
 ## Interfaces
 
 In the physical world, when you walk into a room you've never been in before,
 you can recognize a lot of objects by their general shape. For instance, you can
-usually tell if something is a chair, or a bowl, or a broom.
+usually tell if something is a chair, or a bowl, or a broom. Usually, the
+fundamental difference between these objects is what they can do or how you can
+use them.
 
-## Optional Typing
-
-## Top and Bottom Types
+In programming, an interface is a way of describing a set of capabilities that a
+type has, or operations that can be performed on a type.
 
 ## Structural and Nominal Typing
 
