@@ -329,7 +329,6 @@
 <h2 id="interfaces">Interfaces</h2>
 <p>In the physical world, when you walk into a room you’ve never been in before, you can recognize a lot of objects by their general shape. For instance, you can usually tell if something is a chair, or a bowl, or a broom. Usually, the fundamental difference between these objects is what they can do or how you can use them.</p>
 <p>In programming, an interface is a way of describing a set of capabilities that a type has, or operations that can be performed on a type.</p>
-<h2 id="structural-and-nominal-typing">Structural and Nominal Typing</h2>
 <h2 id="parametric-types">Parametric Types</h2>
 <p>Sometimes called “generics” or “generic types”, parametric types simply allow us to add variables to our types. These work just like function or method parameters and, in fact, we call these variables “type parameters”. The difference is that whereas function parameters end up replaced by concrete data, type parameters end up replaced by concrete types.</p>
 <p>Parametric type syntax varies from language to language. We will use Rust in the examples below because its syntax is relatively standard and it’s just a fun language.</p>
@@ -385,7 +384,6 @@ help: consider restricting type parameter `T`
 <h2 id="liskov-substitution-principle">Liskov Substitution Principle</h2>
 <p>The <a href="https://doi.org/10.1145%2F197320.197383">Liskov Substitution Principle</a> (LSP) is a well-known principle in object-oriented programming that, put simply, states that it should be possible to replace an instance of a particular type with an instance of any of its subtypes without changing the behavior of the program in question.</p>
 <p>Most statically typed languages enforce some level of compliance with the LSP, at least purely as a matter of types (behavior aside). But it is still important for us, as programmers, to bear it in mind. Additionally, it is easier to violate the LSP by accident in dynamically typed languages.</p>
-<h2 id="type-relationships">Type Relationships</h2>
 
 <div id="after">
     <a href="#">Back to top</a>

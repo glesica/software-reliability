@@ -242,8 +242,6 @@ use them.
 In programming, an interface is a way of describing a set of capabilities that a
 type has, or operations that can be performed on a type.
 
-## Structural and Nominal Typing
-
 ## Parametric Types
 
 Sometimes called "generics" or "generic types", parametric types simply allow us
@@ -385,4 +383,3 @@ at least purely as a matter of types (behavior aside). But it is still important
 for us, as programmers, to bear it in mind. Additionally, it is easier to
 violate the LSP by accident in dynamically typed languages.
 
-## Type Relationships
