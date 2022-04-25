@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>/topics [software reliability]</title>
+  <title>/topics/logging [software reliability]</title>
   <style>
     html {
       line-height: 1.5;
@@ -186,65 +186,25 @@
 <div id="before">
     Software Reliability and Testing
     <div id="before-links">
-        <a href=".." title="Course Home">Home</a> |
+        <a href="../.." title="Course Home">Home</a> |
         <a href="https://github.com/glesica/software-reliability" title="Course GitHub Page">GitHub</a>
     </div>
 </div>
-<h1 id="topics">Topics</h1>
-<p>We expect to cover the following topics during the semester. Each topic has its own directory, which also contains any supplementary files or other resources.</p>
-<ol type="1">
-<li>Introduction
-<ol type="1">
-<li><a href="reliability-defined/">Reliability Defined</a></li>
-<li><a href="linux-ecosystem/">The Linux Ecosystem</a></li>
-<li><a href="languages-tools/">Languages and Tools</a></li>
-<li><a href="docker/">Docker</a></li>
-</ol></li>
-<li>Dynamic Analysis
-<ol type="1">
-<li><a href="functional-testing/">Functional Testing</a></li>
-<li><a href="unit-testing/">Unit Testing</a></li>
-<li><a href="choosing-test-values/">Choosing Test Values</a></li>
-<li><a href="code-coverage/">Code Coverage</a></li>
-<li><a href="fuzz-testing/">Fuzz Testing</a></li>
-<li><a href="integration-testing/">Integration Testing</a></li>
-</ol></li>
-<li>Static Analysis
-<ol type="1">
-<li><a href="code-complexity/">Code Complexity</a></li>
-<li><a href="linters-and-formatters/">Linters and Formatters</a></li>
-<li><a href="data-types/">Data Types</a></li>
-</ol></li>
-<li>Design Techniques
-<ol type="1">
-<li><a href="dependency-injection/">Dependency Injection</a></li>
-<li><a href="interfaces/">Interfaces</a></li>
-<li><a href="pure-functions/">Pure Functions</a></li>
-<li>Reproducibility</li>
-<li><a href="single-responsibility/">Single Responsibility Principle</a></li>
-<li><a href="factory-pattern/">The Factory Pattern</a></li>
-</ol></li>
-<li>Development Methodologies
-<ol type="1">
-<li>Behavior-driven Development</li>
-<li><a href="code-review/">Code Review</a></li>
-<li>Design by Contract</li>
-<li>Test-driven Development</li>
-<li><a href="technical-debt">Technical Debt</a></li>
-</ol></li>
-<li>Software in the Wild
-<ol type="1">
-<li>Analytics</li>
-<li><a href="logging/">Logging</a></li>
-<li>Monitoring</li>
-<li>Bug Reporting and Triage</li>
-</ol></li>
-</ol>
+<h1 id="logging">Logging</h1>
+<p>When we deploy software it can feel a little like releasing a balloon into the air, it’s gone forever. Sometimes, if we’re very lucky, users will tell us when things break. We might get bug reports or, more likely, negative reviews or calls to customer support (depending on the type of product). But more often than not, if there is something wrong with our software, users will simply find another way to do whatever it is they need, or want, to do.</p>
+<p>Even when users try to be helpful, they are almost always unfamiliar with the inner workings of our software. In most cases, a bug reports saying that the software “crashed” is unhelpful. Unfortunately, though, that is usually about all we can expect from an average user.</p>
+<p>So how do we solve this problem?</p>
+<p>Obviously, our software needs to be able to tell us what’s happening on its own. At the very least, we need to be able to glean additional information from a sparse user report. At best, we shouldn’t need the user reports at all.</p>
+<h2 id="log-files">Log Files</h2>
+<p>The simplest way to track what’s going on with our software is logging. And the simplest way to collect logs is with log files. Think of this as “print” debugging after a good night’s sleep and a healthy breakfast.</p>
+<p>We will look at logging to files using Python.</p>
+<h2 id="telemetry">Telemetry</h2>
+<p>Telemetry is data collected by software and transmitted to a server. Think of it as remote logging, though it’s a bit more than that. Generally, telemetry involves user-facing code, since we’re interested in not just how data are flowing through the system, but what the user is actually doing, how long is takes, and so on.</p>
 
 <div id="after">
     <a href="#">Back to top</a>
     <div id="after-links">
-        <a href=".." title="Course Home">Home</a> |
+        <a href="../.." title="Course Home">Home</a> |
         <a href="https://github.com/glesica/software-reliability" title="Course GitHub Page">GitHub</a>
     </div>
 </div>

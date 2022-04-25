@@ -34,7 +34,7 @@ own directory, which also contains any supplementary files or other resources.
      1. [Technical Debt](technical-debt)
   1. Software in the Wild
      1. Analytics
-     1. Logging
+     1. [Logging](logging/)
      1. Monitoring
      1. Bug Reporting and Triage
 
