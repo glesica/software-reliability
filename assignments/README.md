@@ -16,6 +16,7 @@ topics.
   * [Code Review](../topics/code-review/assignment/)
   * [Integration Testing](../topics/integration-testing/assignment/)
   * [Linters and Formatters](../topics/linters-and-formatters/assignment/)
+  * [Logging](../topics/logging/assignment/)
 
 ## Projects
 
